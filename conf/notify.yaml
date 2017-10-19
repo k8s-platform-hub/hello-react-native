@@ -1,0 +1,38 @@
+email:
+  providers:
+    default: null
+    smtpConf:
+      smtpHostname: ""
+      smtpPassword:
+        secretKeyRef:
+          key: notify.smtp.password
+          name: hasura-project-secrets
+      smtpPort: 465
+      smtpUsername:
+        secretKeyRef:
+          key: notify.smtp.username
+          name: hasura-project-secrets
+    sparkPostConf:
+      sparkKey:
+        secretKeyRef:
+          key: notify.sparkpost.key
+          name: hasura-project-secrets
+sms:
+  providers:
+    default: null
+    msg91Conf:
+      msg91From: ""
+      msg91Key:
+        secretKeyRef:
+          key: notify.msg91.key
+          name: hasura-project-secrets
+    twilioConf:
+      accountSid:
+        secretKeyRef:
+          key: notify.twilio.accountsid
+          name: hasura-project-secrets
+      authToken:
+        secretKeyRef:
+          key: notify.twilio.authtoken
+          name: hasura-project-secrets
+      twilioFrom: ""

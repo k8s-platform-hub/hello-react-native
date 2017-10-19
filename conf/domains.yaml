@@ -1,0 +1,5 @@
+{{ cluster.name }}.hasura-app.io:
+  ssl:
+    type: LetsEncrypt 
+    conf:
+      account: {{ cluster.name }}

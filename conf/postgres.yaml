@@ -1,0 +1,11 @@
+database: hasuradb
+password:
+  secretKeyRef:
+    key: postgres.password
+    name: hasura-project-secrets
+port: "5432"
+user:
+  secretKeyRef:
+    key: postgres.user
+    name: hasura-project-secrets
+volume: {{ cluster.metadata.postgres.volume|json }}

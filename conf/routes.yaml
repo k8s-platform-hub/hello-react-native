@@ -1,0 +1,52 @@
+auth:
+  /:
+    corsPolicy: allow_all
+    enableAuth: true
+    enableCORS: true
+    enableWebsockets: true
+    locationDirectives: null
+    restrictToRoles: null
+    upstreamService:
+      name: auth
+      namespace: hasura
+    upstreamServicePath: /
+    upstreamServicePort: 80
+data:
+  /:
+    corsPolicy: allow_all
+    enableAuth: true
+    enableCORS: true
+    enableWebsockets: true
+    locationDirectives: null
+    restrictToRoles: null
+    upstreamService:
+      name: data
+      namespace: hasura
+    upstreamServicePath: /
+    upstreamServicePort: 80
+filestore:
+  /:
+    corsPolicy: allow_all
+    enableAuth: true
+    enableCORS: true
+    enableWebsockets: true
+    locationDirectives: null
+    restrictToRoles: null
+    upstreamService:
+      name: filestore
+      namespace: hasura
+    upstreamServicePath: /
+    upstreamServicePort: 80
+notify:
+  /:
+    corsPolicy: allow_all
+    enableAuth: true
+    enableCORS: true
+    enableWebsockets: true
+    locationDirectives: null
+    restrictToRoles: null
+    upstreamService:
+      name: notify
+      namespace: hasura
+    upstreamServicePath: /
+    upstreamServicePort: 80
