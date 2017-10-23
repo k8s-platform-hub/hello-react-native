@@ -1,3 +1,3 @@
 remotes:
-  {{ cluster.alias }}: {}
+  {{ cluster.name }}: {}
 registry: {}
