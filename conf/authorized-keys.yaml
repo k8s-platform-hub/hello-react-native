@@ -1,0 +1,3 @@
+configMapKeyRef:
+  name: ssh-authorized-keys
+  key: authorizedKeys
