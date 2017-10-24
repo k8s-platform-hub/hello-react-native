@@ -8,7 +8,7 @@ auth:
     restrictToRoles: null
     upstreamService:
       name: auth
-      namespace: hasura
+      namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
 data:
@@ -21,7 +21,7 @@ data:
     restrictToRoles: null
     upstreamService:
       name: data
-      namespace: hasura
+      namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
 filestore:
@@ -34,7 +34,7 @@ filestore:
     restrictToRoles: null
     upstreamService:
       name: filestore
-      namespace: hasura
+      namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
 notify:
@@ -47,6 +47,6 @@ notify:
     restrictToRoles: null
     upstreamService:
       name: notify
-      namespace: hasura
+      namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
