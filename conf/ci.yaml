@@ -1,2 +1,3 @@
 remotes:
   {{ cluster.name }}: {}
+registry: {{ cluster.metadata.registry|json }}
