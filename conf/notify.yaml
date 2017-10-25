@@ -1,6 +1,6 @@
 email:
+  default: null
   providers:
-    default: null
     smtpConf:
       smtpHostname: ""
       smtpPassword:
@@ -18,8 +18,8 @@ email:
           key: notify.sparkpost.key
           name: hasura-project-secrets
 sms:
+  default: null
   providers:
-    default: null
     msg91Conf:
       msg91From: ""
       msg91Key:
