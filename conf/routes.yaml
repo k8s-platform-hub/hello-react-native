@@ -4,7 +4,7 @@ auth:
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
-    locationDirectives: null
+    locationDirectives: ""
     restrictToRoles: null
     upstreamService:
       name: auth
@@ -17,7 +17,7 @@ data:
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
-    locationDirectives: null
+    locationDirectives: ""
     restrictToRoles: null
     upstreamService:
       name: data
@@ -30,7 +30,7 @@ filestore:
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
-    locationDirectives: null
+    locationDirectives: ""
     restrictToRoles: null
     upstreamService:
       name: filestore
@@ -43,7 +43,7 @@ notify:
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
-    locationDirectives: null
+    locationDirectives: ""
     restrictToRoles: null
     upstreamService:
       name: notify
