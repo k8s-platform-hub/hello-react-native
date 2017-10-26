@@ -1,0 +1,1 @@
+volume: {{ cluster.metadata.sessionStore.volume|json }}
