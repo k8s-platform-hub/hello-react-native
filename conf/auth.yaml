@@ -18,29 +18,29 @@ email:
   forgotPassEmailSubject: MyAwesomeApp - Reset password request
   forgotPassTemplate: |
     Hi, <br/> Click on
-    http://auth.{{ cluster.name }}.hasura-app.io/v2/providers/email/reset-password?token={{token}}to reset your password.
+    http://auth.{{ cluster.name }}.hasura-app.io/v2/providers/email/reset-password?token={{ "{{token}}" }}to reset your password.
   resetTokenExpires: "7"
   verifEmailFromName: admin
   verifyEmailFrom: getstarteduser@hasura.io
   verifyEmailSubject: MyAwesomeApp - Verify your account
-  verifyTemplate: "Hi, Please click on \nhttp://auth.{{ cluster.name }}.hasura-app.io/v2/providers/email/verify-email?token={{token}}to\nverify
+  verifyTemplate: "Hi, Please click on \nhttp://auth.{{ cluster.name }}.hasura-app.io/v2/providers/email/verify-email?token={{ "{{token}}" }}to\nverify
     your email.\n"
   verifyTokenExpires: "7"
 google: null
 mobile:
   otpExpiryTime: "15"
   smsTemplate: |
-    Verify your acccount with MyAwesomeApp! Your OTP is {{otp}}.
+    Verify your acccount with MyAwesomeApp! Your OTP is {{ "{{otp}}" }}.
 mobilePassword:
   otpExpiryTime: "15"
   smsTemplate: |
-    Verify your acccount with MyAwesomeApp! Your OTP is {{otp}}.
-notifyDomain: http://notify.hasura
+    Verify your acccount with MyAwesomeApp! Your OTP is {{ "{{otp}}" }}.
+notifyDomain: http://notify.{{ cluster.metadata.namespaces.hasura }}
 password:
   minLength: "8"
 postgres:
   database: hasuradb
-  host: postgres.hasura
+  host: postgres.{{ cluster.metadata.namespaces.hasura }}
   password:
     secretKeyRef:
       key: postgres.password
@@ -52,10 +52,10 @@ postgres:
       name: hasura-project-secrets
 redis:
   cred: null
-  host: session-redis.hasura
+  host: session-redis.{{ cluster.metadata.namespaces.hasura }}
   port: "6379"
 session:
-  cookieName: dinoisses
+  cookieName: {{ cluster.name }}
   cookieSecure: "true"
   sessionAge: "1814400"
 superUser:
