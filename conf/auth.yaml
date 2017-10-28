@@ -44,12 +44,12 @@ postgres:
   password:
     secretKeyRef:
       key: postgres.password
-      name: hasura-project-secrets
+      name: hasura-secrets
   port: "5432"
   user:
     secretKeyRef:
       key: postgres.user
-      name: hasura-project-secrets
+      name: hasura-secrets
 redis:
   cred: null
   host: session-redis.{{ cluster.metadata.namespaces.hasura }}
@@ -63,5 +63,5 @@ superUser:
   password:
     secretKeyRef:
       key: auth.admin.password
-      name: hasura-project-secrets
+      name: hasura-secrets
   username: admin

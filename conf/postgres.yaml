@@ -2,10 +2,10 @@ database: hasuradb
 password:
   secretKeyRef:
     key: postgres.password
-    name: hasura-project-secrets
+    name: hasura-secrets
 port: "5432"
 user:
   secretKeyRef:
     key: postgres.user
-    name: hasura-project-secrets
+    name: hasura-secrets
 volume: {{ cluster.metadata.postgres.volume|json }}
