@@ -1,52 +1,71 @@
+# HTTP routes configured on Hasura API Gateway
+# Each block refers to a sub-domain. This is translated to a nginx location block which proxy passes all requests 
+# on the URL to the upstream service
+# Example route:
+
+# www:                                  # sub-domain, will be available as www.cluster-name.hasura-app.io
+#   /:                                  # URL to proxy the requests to
+#     upstreamService:                  # Name and namespace of the service to be proxied to
+#       name: auth
+#       namespace: {{ cluster.metadata.namespaces.user }}
+#     upstreamServicePath: /            # Upstream path
+#     upstreamServicePort: 80           # Port of the service 
+#     corsPolicy: allow_all             # CORS policy for this route, "allow_all" or a list of allowed domains
+#     enableAuth: true                  # Enable session middleware to resolve auth tokens to user-id and role
+#     enableCORS: true                  # Enable CORS policies on this route
+#     enableWebsockets: true            # Enable web-socket proxying
+#     locationDirectives: ""            # Extra nginx directives to be added into the location block
+#     restrictToRoles: null             # Restrict access to this route only for specific roles, accepts array of roles
+
 auth:
   /:
-    corsPolicy: allow_all
-    enableAuth: true
-    enableCORS: true
-    enableWebsockets: true
-    locationDirectives: ""
-    restrictToRoles: null
     upstreamService:
       name: auth
       namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
-data:
-  /:
     corsPolicy: allow_all
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
     locationDirectives: ""
     restrictToRoles: null
+data:
+  /:
     upstreamService:
       name: data
       namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
-filestore:
-  /:
     corsPolicy: allow_all
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
     locationDirectives: ""
     restrictToRoles: null
+filestore:
+  /:
     upstreamService:
       name: filestore
       namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
-notify:
-  /:
     corsPolicy: allow_all
     enableAuth: true
     enableCORS: true
     enableWebsockets: true
     locationDirectives: ""
     restrictToRoles: null
+notify:
+  /:
     upstreamService:
       name: notify
       namespace: {{ cluster.metadata.namespaces.hasura }}
     upstreamServicePath: /
     upstreamServicePort: 80
+    corsPolicy: allow_all
+    enableAuth: true
+    enableCORS: true
+    enableWebsockets: true
+    locationDirectives: ""
+    restrictToRoles: null

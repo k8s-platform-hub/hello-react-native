@@ -1,3 +1,5 @@
+# Configuration for Hasura Notify service
+# Set a provider as default and add the required credentials to use them
 email:
   default: null
   providers:

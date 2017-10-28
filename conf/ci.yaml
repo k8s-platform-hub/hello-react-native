@@ -1,5 +1,16 @@
+# Defines continuous integration for the project
+# registry defines a custom docker registry to push built images
 registry: {{ cluster.metadata.registry|json }}
 remotes:
+  # Default remote to push code and configuration
   {{ cluster.name }}:
     <<: {}
-
+    
+    # Add new remotes here above this line
+    # Example:
+    
+    # remote-name:
+    #   namespace.service-name:
+    #     container-name:
+    #       path: services/app
+    #       dockerfile: services/app/Dockerfile

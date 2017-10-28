@@ -1,1 +1,3 @@
+# Configuration for Hasura API Gateway
+# Filled in from cluster metadata, contains Kubernete spec for the service object
 {{ cluster.metadata.gateway|json }}

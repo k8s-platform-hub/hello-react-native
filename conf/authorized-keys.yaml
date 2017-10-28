@@ -1,3 +1,10 @@
+# Defines where SSH keys are stored on the cluster
+# Refers to the field `authorizedKey`s from a Kubernetes ConfigMap called `ssh-authorized-keys`
+# A `ConfigMap` is a Kubernetes object where some configuration can be stored
+# This ConfigMap is created when the cluster is created
+# All SSH keys added to the cluster (using `hasura ssh-key add`) are stored in this ConfigMap
+
 configMapKeyRef:
   name: ssh-authorized-keys
   key: authorizedKeys
+  

@@ -1,1 +1,2 @@
-# contents will be ignored while publishing
+# gitignore like file
+# files and directories mentioned here will be ignored while publishing to hasura
