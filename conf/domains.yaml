@@ -1,5 +1,5 @@
 # Domain configuration for the API gateway
-# Hasura allots a .hasura-app.io for every cluster
+# Hasura allots a cluster-name.hasura-app.io for every cluster
 {{ cluster.name }}.hasura-app.io:
   ssl:
     type: LetsEncrypt 

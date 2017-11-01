@@ -1,10 +1,11 @@
 # HTTP routes configured on Hasura API Gateway
 # Each block refers to a sub-domain. This is translated to a nginx location block which proxy passes all requests 
 # on the URL to the upstream service
+# To see actual endpoints for these routes, use `$ hasura cluster status`
 # Example route:
 
 # www:                                  # sub-domain, will be available as www.cluster-name.hasura-app.io
-#   /:                                  # URL to proxy the requests to
+#   /:                                  # URL from which requests are proxied to upstream
 #     upstreamService:                  # Name and namespace of the service to be proxied to
 #       name: auth
 #       namespace: {{ cluster.metadata.namespaces.user }}
@@ -25,11 +26,6 @@ auth:
     upstreamServicePath: /
     upstreamServicePort: 80
     corsPolicy: allow_all
-    enableAuth: true
-    enableCORS: true
-    enableWebsockets: true
-    locationDirectives: ""
-    restrictToRoles: null
 data:
   /:
     upstreamService:
@@ -38,11 +34,6 @@ data:
     upstreamServicePath: /
     upstreamServicePort: 80
     corsPolicy: allow_all
-    enableAuth: true
-    enableCORS: true
-    enableWebsockets: true
-    locationDirectives: ""
-    restrictToRoles: null
 filestore:
   /:
     upstreamService:
@@ -51,11 +42,6 @@ filestore:
     upstreamServicePath: /
     upstreamServicePort: 80
     corsPolicy: allow_all
-    enableAuth: true
-    enableCORS: true
-    enableWebsockets: true
-    locationDirectives: ""
-    restrictToRoles: null
 notify:
   /:
     upstreamService:
@@ -64,8 +50,3 @@ notify:
     upstreamServicePath: /
     upstreamServicePort: 80
     corsPolicy: allow_all
-    enableAuth: true
-    enableCORS: true
-    enableWebsockets: true
-    locationDirectives: ""
-    restrictToRoles: null

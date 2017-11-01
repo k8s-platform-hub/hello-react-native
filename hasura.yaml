@@ -1,5 +1,4 @@
-# Some metadata about the project
-name: base
 description: Blank template for a Hasura project
 keywords: base, getting-started
-platformVersion: "v0.15.3"
+name: base
+platformVersion: v0.15.3
