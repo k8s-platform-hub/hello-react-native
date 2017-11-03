@@ -23,11 +23,11 @@ The project (a.k.a. project directory) has a particular directory structure and 
 │   ├── routes.yaml
 │   └── session-store.yaml
 ├── migrations
-│   ├── 1504788327_create_table_user.down.yaml
-│   ├── 1504788327_create_table_user.down.sql
-│   ├── 1504788327_create_table_user.up.yaml
-│   └── 1504788327_create_table_user.up.sql
-└── services
+│   ├── 1504788327_create_table_userprofile.down.yaml
+│   ├── 1504788327_create_table_userprofile.down.sql
+│   ├── 1504788327_create_table_userprofile.up.yaml
+│   └── 1504788327_create_table_userprofile.up.sql
+└── microservices 
     ├── adminer
     │   └── k8s.yaml
     └── flask
