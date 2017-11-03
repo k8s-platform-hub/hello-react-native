@@ -120,21 +120,30 @@ password:
 #  # your facebook app client id
 #  clientId: xxxxxxxxx
 #  # your facebook app client secret
-#  clientSecret: yyyyyyyyyyy
+#  clientSecret:
+#    secretKeyRef:
+#      key: auth.facebook.client.secret
+#      name: hasura-secrets
 #
 # Configuration for github provider
 #github:
 #  # your github app client id
 #  clientId: xxxxxxxxx
 #  # your github app client secret
-#  clientSecret: yyyyyyyyyyy
+#  clientSecret:
+#    secretKeyRef:
+#      key: auth.github.client.secret
+#      name: hasura-secrets
 #
 # Configuration for linkedin provider
 #linkedin:
 #  # your linkedin app client id
 #  clientId: xxxxxxxxx
 #  # your linkedin app client secret
-#  clientSecret: yyyyyyyyyyy
+#  clientSecret:
+#    secretKeyRef:
+#      key: auth.linkedin.client.secret
+#      name: hasura-secrets
 
 # Configuration for adding a custom provider
 # customProviders:
