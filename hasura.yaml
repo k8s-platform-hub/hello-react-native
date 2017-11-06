@@ -1,4 +1,4 @@
-description: Blank template for a Hasura project
+description: A react native app with a nodejs service deployed on Hasura.
 keywords: base, getting-started
-name: base
+name: hello-react-native-nodejs
 platformVersion: v0.15.3

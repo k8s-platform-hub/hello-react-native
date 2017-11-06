@@ -6,6 +6,10 @@ remotes:
   {{ cluster.name }}:
     <<: {}
     
+    '{{ cluster.metadata.namespaces.user }}.app':
+      app:
+        dockerfile: microservices/app/Dockerfile
+        path: microservices/app
     # Add new remotes here above this line
     # Example:
     
