@@ -15,10 +15,8 @@ Note: This is just to get you familiar with the system. You can delete these tab
 - The functions that make these calls are in the `react-native/src/hasuraApi.js` file. Modify it as you like and the changes will reflect in the app.
 
 In order to get this app running, you must have the following:
-1. Hasura command line interface (hasura). Install using:
-```
-curl https://storage.googleapis.com/hasuractl/install.sh | bash
-```
+1. [Hasura CLI tool](https://docs.hasura.io/0.15/manual/install-hasura-cli.html) (hasura).
+
 2. Expo client (XDE). Download from https://expo.io/tools
 
 (For more such apps, check out https://hasura.io/hub)

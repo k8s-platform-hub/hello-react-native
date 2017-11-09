@@ -3,5 +3,5 @@
     configmap: controller-conf
     namespace: hasura
   data: null
-  kubeContext: h34-ability88-stg
-  name: h34-ability88-stg
+  kubeContext: clarification20
+  name: clarification20

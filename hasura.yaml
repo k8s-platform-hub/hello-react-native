@@ -1,4 +1,5 @@
 description: A react native app with a nodejs service deployed on Hasura.
-keywords: getting-started, react-native, native, react, mobile, android, ios
+keywords: getting-started, react-native, native, react, mobile, android, ios, node,
+  nodejs
 name: hello-react-native
 platformVersion: v0.15.3

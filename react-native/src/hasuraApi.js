@@ -1,4 +1,4 @@
-const clusterName = "h34-ability88-stg"
+const clusterName = "clarification20"
 
 const dataUrl = "https://data." + clusterName + ".hasura-app.io/v1/query";
 const loginUrl = "https://auth." + clusterName + ".hasura-app.io/v1/login";
