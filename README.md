@@ -15,7 +15,7 @@ Note: This is just to get you familiar with the system. You can delete these tab
 - The functions that make these calls are in the `react-native/src/hasuraApi.js` file. Modify it as you like and the changes will reflect in the app.
 
 In order to get this app running, you must have the following:
-1. [Hasura CLI tool](https://docs.hasura.io/0.15/manual/install-hasura-cli.html) (hasura).
+1. [hasura CLI tool](https://docs.hasura.io/0.15/manual/install-hasura-cli.html) (hasura).
 
 2. Expo client (XDE). Download from https://expo.io/tools
 
@@ -150,7 +150,7 @@ Filestore
 
 Custom microservices
 ---------
-- Sometimes you might need to add new microservices/APIs as per your requirements. In such cases, you can deploy your microservices with hasura using git push or docker.
+- Sometimes you might need to add new microservices/APIs as per your requirements. In such cases, you can deploy your microservices with Hasura using git push or docker.
 - This quickstart comes with one such custom microservice written in nodejs using the express framework. Check it out in action at https://api.cluster-name.hasura-app.io . Currently, it just returns a "Hello-React" at that endpoint.
 - This microservice is in the microservices folder of the project directory. You can add your custom microservice there.
 - In case you want to use another language/framework for your custom microservice. Take a look at our docs to see how you can add a new custom microservice.
