@@ -1,5 +1,4 @@
-description: A react native app with a nodejs service deployed on Hasura.
-keywords: getting-started, react-native, native, react, mobile, android, ios, node,
-  nodejs
+description: A Hasura starter project with a react-native application that uses Hasura BAAS features. It also has a ready to deploy nodejs hello-world microservice using the express framework.
+keywords: getting-started, react-native, native, react, mobile, android, ios, node, nodejs
 name: hello-react-native
 platformVersion: v0.15.3
