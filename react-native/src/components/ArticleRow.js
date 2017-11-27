@@ -1,17 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ActivityIndicator, Button } from 'react-native';
+import {Container, Card, CardItem, Header, Title, Content, Button, Left, Text, Icon, Body, Right} from 'native-base';
+import { View, ActivityIndicator} from 'react-native';
 
 export default class ArticleRow extends React.Component {
 
   state = {
-    loading: false
+    fontsAreLoaded: false,
   }
 
   onArticlePressed(id){
-    this.setState({
-      loading: true
-    })
     this.props.articleCallback(id);
+  }
+
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+    this.setState({...this.state, fontsAreLoaded: true});
   }
   
   handleLogoutPressed = () => {
@@ -23,44 +29,40 @@ export default class ArticleRow extends React.Component {
   render() {
     const showList = () => {
       return this.props.articleList.map((article, i) => {
+        
         return (
-          <View key={i}>
-            <TouchableOpacity style={styles.card} onPress={() => {
+          <Card key={i}>
+            <CardItem button onPress={() => {
               this.onArticlePressed(article.id);
             }}>
               <Text> {article.title} </Text>
-            </TouchableOpacity>
-            <View style={{backgroundColor:"black", height:2}}/>
-          </View>
+            </CardItem>
+          </Card>
         );
       });
     };
-    return (
-      <View>
-        <ActivityIndicator
-          animating={this.state.loading}
-          size="large"/>
-        <Text style={styles.title}> Article List </Text>
-        <ScrollView >
-          {showList()}
-        </ScrollView>
-        <Button title='Logout' onPress={this.handleLogoutPressed} style={{marginBottom: 25}}/>
-      </View>
-    );
+
+    if(this.state.fontsAreLoaded == true){
+      return (
+          <Container>
+            <Header>
+              <Left>
+                <Button transparent onPress={this.handleLogoutPressed}>
+                  <Icon name='arrow-back'/>
+                </Button>
+              </Left>
+              <Body>
+                <Title>Article List</Title>
+              </Body>
+              <Right />
+            </Header>
+            <Content>
+              {showList()}
+            </Content>
+          </Container>
+      );
+    } else {
+      return (<Container><Text>...Loading</Text></Container>);
+    }
   }
 }
-
-const styles = StyleSheet.create({
-  title: {
-    margin: 24,
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  card: {
-    height: 40,
-    paddingTop: 5,
-    paddingBottom: 5,
-  }
-});

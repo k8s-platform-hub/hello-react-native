@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, Button } from 'react-native';
+import {  Alert, Text} from 'react-native';
+import { Container } from 'native-base';
 import { getArticleList } from '../hasuraApi';
 import Article from './Article';
 import ArticleRow from './ArticleRow';
@@ -12,7 +13,8 @@ export default class ArticleList extends React.Component {
     this.state={
       articleList: [],
       currentArticleId: null,
-      logoutPressed: false
+      logoutPressed: false,
+      fontsAreLoaded: false,
     }
     this.articleClicked = this.articleClicked.bind(this);
     this.backToList = this.backToList.bind(this);
@@ -30,6 +32,13 @@ export default class ArticleList extends React.Component {
     else {
       Alert.alert('Something went wrong', 'Please check table permissions and your internet connection')
     }
+
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+    this.setState({...this.state, fontsAreLoaded: true});
+
   }
 
   articleClicked(id){
@@ -46,7 +55,7 @@ export default class ArticleList extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container style={{alignItems: 'center', justifyContent: 'center'}}>
         {
           (this.state.currentArticleId !== null)
           ?
@@ -54,25 +63,7 @@ export default class ArticleList extends React.Component {
           :
           <ArticleRow articleList={this.state.articleList} articleCallback={this.articleClicked} logoutCallback={this.props.logoutCallback}/>
         }
-      </View>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 24,
-    marginBottom: 48,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-});

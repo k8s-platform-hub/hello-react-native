@@ -1,5 +1,6 @@
 import React from 'react';
-import { Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text  } from 'react-native';
+import { Container, Header, Title, Content, Button, Left, Body, Text, Form, Item, Label, Input, Right} from 'native-base';
+import { View, Alert } from 'react-native';
 import { trySignup, tryLogin } from '../hasuraApi';
 import ArticleList from './ArticleList'
 
@@ -11,7 +12,16 @@ export default class AuthScreen extends React.Component {
 	  	isLoggedIn : false,
 	  	usernameTextBox : '',
 	  	passwordTextBox : '',
+      fontsAreLoaded: false,
 	  }
+  }
+
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+    this.setState({...this.state, fontsAreLoaded: true});
   }
 
   handleLoginPressed = async () => {
@@ -56,46 +66,47 @@ export default class AuthScreen extends React.Component {
   }
 
   render() {
-	  if(this.state.isLoggedIn === true){
-	    return (
-	      <View style={styles.container}>
-	        <ArticleList logoutCallback={this.handleLogout}/> 
-	      </View>
-	    );
-	  }
-
-    return(
-      <Container>
-        <Header>
-          <Body>
-            <Title> Login </Title>
-          </Body>
-        </Header>
-        <Content>
-          <Form>
-            <Item floatingLabel>
-              <Label>Username</Label>
-              <Input value={this.state.usernameTextBox} onChangeText={this.handleUsernameChange}/>
-            </Item>
-            <Item floatingLabel>
-              <Label>Username</Label>
-              <Input value={this.state.passwordTextbox} onChangeText={this.handlePasswordChange}/>
-            </Item>
-          </Form>
-          <View style={{flexDirection: 'row'}}>
-            <View style={styles.buttonView}>
-              <Button rounded onPress={this.handleSignupPressed}/>
+	  if (this.state.fontsAreLoaded == true) {
+      if(this.state.isLoggedIn === true){
+          return (
+              <ArticleList logoutCallback={this.handleLogout}/> 
+          );
+        }
+    
+        return(
+          <Container>
+            <Header>
+              <Left />
+              <Body>
+                <Title> Login </Title>
+              </Body>
+              <Right />
+            </Header>
+            <Content contentContainerStyle={{justifyContent:'center', margin: 20}}>
+              <Form>
+                <Item floatingLabel>
+                  <Label>Username</Label>
+                  <Input value={this.state.usernameTextBox} onChangeText={this.handleUsernameChange}/>
+                </Item>
+                <Item floatingLabel>
+                  <Label>Password</Label>
+                  <Input value={this.state.passwordTextbox} onChangeText={this.handlePasswordChange} secureTextEntry/>
+                </Item>
+              </Form>
+              <View style = {{height:10}} />
+              <Button block onPress={this.handleSignupPressed} >
                 <Text> Sign up </Text>
               </Button>
-            </View>
-            <View style={styles.buttonView}>
-              <Button title="Log in" onPress={this.handleLoginPressed}/>
+              <View style = {{height:10}} />
+              <Button block title="Log in" onPress={this.handleLoginPressed} >
                 <Text> Log in </Text>
               </Button>
-            </View>
-          </View>
-        </Content>
-      </Container>
-    )
+            </Content>
+          </Container>
+        )
+      }
+      else {
+        return (<Container><Text>...Loading</Text></Container>);
+      }
   }
 }

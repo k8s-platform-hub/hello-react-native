@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, Button, ScrollView } from 'react-native';
+import { Alert} from 'react-native';
+import { Container, Text, Button, Card, CardItem, Icon, Header, Left, Body, Title, Content, Right} from 'native-base'
 import { getArticle } from '../hasuraApi'
 
 export default class Article extends React.Component {
@@ -8,7 +9,8 @@ export default class Article extends React.Component {
     super(props);
     this.state={
       articleId: props.articleId,
-      articleObj: null
+      articleObj: null,
+      fontsAreLoaded: false,
     }
   } 
 
@@ -23,53 +25,49 @@ export default class Article extends React.Component {
       Alert.alert("Unexpected", articleObj.json().error)
       this.props.backToListCallback();
     }
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    });
+    this.setState({...this.state, fontsAreLoaded: true});
   }
 
   render() {
-    if(this.state.articleObj !== null){
+    if(this.state.articleObj !== null && this.state.fontsAreLoaded){
       return (
-        <View style={styles.container} >
-          <ScrollView>
-            <Text style={styles.title}>Title: {this.state.articleObj.title}</Text>
-            <Text style={styles.subHeading} >By: {this.state.articleObj.author.name}</Text>
-            <View style={{height:10}}/>
-            <Text>{this.state.articleObj.content}</Text>
-          </ScrollView>
-          <View style={{paddingTop:15}}>
-            <Button title={"Back to list"} onPress={this.props.backToListCallback}/>
-          </View>
-        </View>
-      );
+        <Container>
+          <Header>
+            <Left>
+              <Button transparent onPress={this.props.backToListCallback}>
+                <Icon name='arrow-back'/>
+              </Button>
+            </Left>
+            <Body>
+              <Title>Article</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content>
+            <Card>
+              <CardItem header>
+                <Text>{this.state.articleObj.title}</Text>
+              </CardItem>
+              <CardItem>
+                <Text>{this.state.articleObj.content}</Text>
+              </CardItem>
+              <CardItem footer>
+                <Text>By: {this.state.articleObj.author.name}</Text>
+              </CardItem>
+            </Card>
+          </Content>
+        </Container>
+      )
+
     }
     return (
-      <View style={styles.container}>
-        <Text> ... L.O.A.D.I.N.G </Text>
-      </View>
+      <Container style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Text> ...Loading </Text>
+      </Container>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 50,
-    padding: 10
-  },
-  title: {
-    margin: 24,
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  },
-  subHeading: {
-    margin: 24,
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#34495e',
-  }
-});
