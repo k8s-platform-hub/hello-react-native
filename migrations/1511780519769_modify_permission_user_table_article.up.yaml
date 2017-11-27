@@ -1,0 +1,36 @@
+- args:
+    permission:
+      check: {}
+    role: user
+    table: article
+  type: create_insert_permission
+- args:
+    permission:
+      columns:
+      - id
+      - title
+      - content
+      - rating
+      - author_id
+      filter: {}
+    role: user
+    table: article
+  type: create_select_permission
+- args:
+    permission:
+      columns:
+      - id
+      - title
+      - content
+      - rating
+      - author_id
+      filter: {}
+    role: user
+    table: article
+  type: create_update_permission
+- args:
+    permission:
+      filter: {}
+    role: user
+    table: article
+  type: create_delete_permission
