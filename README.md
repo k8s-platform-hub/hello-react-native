@@ -58,7 +58,7 @@ $ git add .
 $ git commit -m "Commit message"
 $ git push hasura master
 ```
-**The app is now ready to use.**
+**The app is now ready to use!!**
 
 Opening the app
 ---------
