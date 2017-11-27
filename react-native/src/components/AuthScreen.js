@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text  } from 'react-native';
 import { trySignup, tryLogin } from '../hasuraApi';
 import ArticleList from './ArticleList'
 
@@ -63,38 +63,39 @@ export default class AuthScreen extends React.Component {
 	      </View>
 	    );
 	  }
-	  return (
-	  	<View style={styles.container}>
-        <Text style={{marginBottom:20, paddingLeft:20, fontSize: 20}}>
-          Please signup or login.
-        </Text>
-				<TextInput value={this.state.usernameTextBox} onChangeText={this.handleUsernameChange} placeholder="Username" style={{paddingBottom: 10, paddingLeft: 10}}/>
-				<TextInput value={this.state.passwordTextbox} onChangeText={this.handlePasswordChange} placeholder="Password" secureTextEntry={true} style={{paddingBottom: 10, paddingLeft: 10, marginBottom: 20}}/>
-	  		<View style={{flexDirection: 'row'}}>
-	  			<View style={styles.buttonView}>
-	  				<Button title="Sign up" onPress={this.handleSignupPressed}/>
-	  			</View>
-	  			<View style={styles.buttonView}>
-	  				<Button title="Log in" onPress={this.handleLoginPressed}/>
-	  			</View>
-	  		</View>
-	  	</View>
-	  )
+
+    return(
+      <Container>
+        <Header>
+          <Body>
+            <Title> Login </Title>
+          </Body>
+        </Header>
+        <Content>
+          <Form>
+            <Item floatingLabel>
+              <Label>Username</Label>
+              <Input value={this.state.usernameTextBox} onChangeText={this.handleUsernameChange}/>
+            </Item>
+            <Item floatingLabel>
+              <Label>Username</Label>
+              <Input value={this.state.passwordTextbox} onChangeText={this.handlePasswordChange}/>
+            </Item>
+          </Form>
+          <View style={{flexDirection: 'row'}}>
+            <View style={styles.buttonView}>
+              <Button rounded onPress={this.handleSignupPressed}/>
+                <Text> Sign up </Text>
+              </Button>
+            </View>
+            <View style={styles.buttonView}>
+              <Button title="Log in" onPress={this.handleLoginPressed}/>
+                <Text> Log in </Text>
+              </Button>
+            </View>
+          </View>
+        </Content>
+      </Container>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    borderColor: 'black',
-    borderWidth: 0.25,
-    margin: 24,
-  },
-  buttonView:{
-  	paddingLeft: 15,
-  	paddingRight: 15,
-  	flex: 1
-  }
-});
