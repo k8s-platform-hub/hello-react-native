@@ -1,15 +1,17 @@
-Ready to use React-native Application with Hasura
-=================================================
+Hello React Native
+==================
 
 Introduction
 ------------
 
-This is a fully working react-native app with a Hasura backend. You can clone it and modify as per your requirements. It has basic BAAS features implemented.
+This is a fully working react-native app with a [Hasura](https://hasura.io) backend and. You can clone it and modify as per your requirements. It has basic BAAS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
 
 - When you clone this quickstart project, there are two tables (article and author) in your database populated with some data.
+
 ```:bash
 Note: This is just to get you familiar with the system. You can delete these tables whenever you like.
 ```
+
 - There is a login screen in this app where the authentication is managed by the Hasura Auth APIs.
 - Then we make data API calls to get the list of articles and their authors.
 - The functions that make these calls are in the `react-native/src/hasuraApi.js` file. Modify it as you like and the changes will reflect in the app.
@@ -27,11 +29,13 @@ Getting the project
 ```
 $ hasura login
 ```
+
 - Clone this project and enter the directory
 ```
 $ hasura quickstart hello-react-native && cd hello-react-native
 ```
-- From project directory, run
+
+- Install node modules. Run
 ```
 $ cd react-native && npm install
 ```
@@ -61,7 +65,7 @@ $ git push hasura master
 **The app is now ready to use!!**
 
 Opening the app
----------
+---------------
 - Open Expo XDE, do a login/signup and click on `Open existing project...`. Browse to the hello-react-native directory and open the app folder.
 - Once the project loads, click on Share.
 - Scan the QR code using the Expo app from your phone (Install from Playstore/Appstore)
@@ -73,6 +77,7 @@ Note: You can open the app with any of your desired react-native simulators. We 
 ```
 
 (*Shoutout to [NativeBase](https://nativebase.io) for their excellent UI components.*)
+
 Migrating an existing project
 -----------------------------
 - Replace react-native directory with your pre-existing react-native project directory.
@@ -134,7 +139,7 @@ $ hasura api-console
 
 About Auth APIs
 ---------
-- Auth is the gateway of any enterprise level application. Hasura gives you a flexibility to implement almost every popular login mechanism (mobile, email, facebook, google etc) in your app.
+- Every app almost always requires some form of authentication. Hasura gives you a flexibility to implement almost every popular login mechanism (mobile, email, facebook, google etc) in your app.
 - In this application, we are using just the normal username password login. You can implement whichever login you need. The auth screen looks like this.
 
 ![List of articles](https://github.com/hasura/hello-react-native/raw/master/readme-assets/auth.png)
@@ -145,14 +150,17 @@ $ hasura api-console
 ```
 
 Filestore
-------
+---------
 - Securely add, remove, manage, update files such as pictures, videos, documents using Hasura filestore.
 - Read more about our filestore [here](https://docs.hasura.io/0.15/manual/files/index.html).
 - Try uploading a file to your database from the api-console.
 
 Custom microservices
----------
+--------------------
 - Sometimes you might need to add new microservices/APIs as per your requirements. In such cases, you can deploy your microservices with Hasura using git push or docker.
 - This quickstart comes with one such custom microservice written in nodejs using the express framework. Check it out in action at https://api.cluster-name.hasura-app.io . Currently, it just returns a "Hello-React" at that endpoint.
 - This microservice is in the microservices folder of the project directory. You can add your custom microservice there.
-- In case you want to use another language/framework for your custom microservice. Take a look at our docs to see how you can add a new custom microservice.
+- To generate your own custom microservice, run
+```
+$ hasura microservice generate --help
+```
