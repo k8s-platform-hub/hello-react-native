@@ -71,6 +71,8 @@ Opening the app
 ```
 Note: You can open the app with any of your desired react-native simulators. We prefer Expo because of its simple onboarding for beginners.
 ```
+
+(*Shoutout to [NativeBase](https://nativebase.io) for their excellent UI components.*)
 Migrating an existing project
 -----------------------------
 - Replace react-native directory with your pre-existing react-native project directory.
