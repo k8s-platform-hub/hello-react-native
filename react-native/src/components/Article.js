@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert} from 'react-native';
-import { Container, Text, Button, Card, CardItem, Icon, Header, Left, Body, Title, Content, Right} from 'native-base'
+import { Container, Text, Button, Card, CardItem, Icon, Header, Left, Body, Title, Content, Right, Spinner} from 'native-base'
 import { getArticle } from '../hasuraApi'
 
 export default class Article extends React.Component {
@@ -22,9 +22,13 @@ export default class Article extends React.Component {
         articleObj: articleObjJson[0]
       });
     } else {
-      Alert.alert("Unexpected", articleObj.json().error)
-      this.props.backToListCallback();
+      if (articleList.status === 504) {
+        Alert.alert('Network error', 'Check your internet connection');
+      } else {
+        Alert.alert('Something went wrong', 'Please check table permissions and your internet connection')
+      }
     }
+
     await Expo.Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
@@ -65,9 +69,12 @@ export default class Article extends React.Component {
 
     }
     return (
-      <Container style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Text> ...Loading </Text>
+      <Container>
+        <Header />
+        <Content>
+          <Spinner color='black' />
+        </Content>
       </Container>
-    )
+    );
   }
 }

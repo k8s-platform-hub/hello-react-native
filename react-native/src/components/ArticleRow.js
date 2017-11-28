@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Card, CardItem, Header, Title, Content, Button, Left, Text, Icon, Body, Right} from 'native-base';
+import {Container, Card, CardItem, Header, Title, Content, Button, Left, Text, Icon, Body, Right, Spinner} from 'native-base';
 import { View, ActivityIndicator} from 'react-native';
 
 export default class ArticleRow extends React.Component {
@@ -61,8 +61,14 @@ export default class ArticleRow extends React.Component {
             </Content>
           </Container>
       );
-    } else {
-      return (<Container><Text>...Loading</Text></Container>);
     }
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <Spinner color='black' />
+        </Content>
+      </Container>
+    );
   }
 }

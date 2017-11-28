@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Alert, Text} from 'react-native';
-import { Container } from 'native-base';
+import { Container, Header, Content, Spinner } from 'native-base';
 import { getArticleList } from '../hasuraApi';
 import Article from './Article';
 import ArticleRow from './ArticleRow';
@@ -30,7 +30,11 @@ export default class ArticleList extends React.Component {
       });
     }
     else {
-      Alert.alert('Something went wrong', 'Please check table permissions and your internet connection')
+      if (articleList.status === 504) {
+        Alert.alert('Network error', 'Check your internet connection');
+      } else {
+        Alert.alert('Something went wrong', 'Please check table permissions and your internet connection')
+      }
     }
 
     await Expo.Font.loadAsync({
@@ -54,15 +58,25 @@ export default class ArticleList extends React.Component {
   }
 
   render() {
+    if(this.state.fontsAreLoaded == true){
+      return (
+        <Container style={{alignItems: 'center', justifyContent: 'center'}}>
+          {
+            (this.state.currentArticleId !== null)
+            ?
+            <Article articleId={this.state.currentArticleId} backToListCallback={this.backToList} />
+            :
+            <ArticleRow articleList={this.state.articleList} articleCallback={this.articleClicked} logoutCallback={this.props.logoutCallback}/>
+          }
+        </Container>
+      );
+    }
     return (
-      <Container style={{alignItems: 'center', justifyContent: 'center'}}>
-        {
-          (this.state.currentArticleId !== null)
-          ?
-          <Article articleId={this.state.currentArticleId} backToListCallback={this.backToList} />
-          :
-          <ArticleRow articleList={this.state.articleList} articleCallback={this.articleClicked} logoutCallback={this.props.logoutCallback}/>
-        }
+      <Container>
+        <Header />
+        <Content>
+          <Spinner color='black' />
+        </Content>
       </Container>
     );
   }

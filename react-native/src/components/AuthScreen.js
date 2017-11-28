@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Title, Content, Button, Left, Body, Text, Form, Item, Label, Input, Right} from 'native-base';
+import { Container, Header, Title, Content, Button, Left, Body, Text, Form, Item, Label, Input, Right, Spinner} from 'native-base';
 import { View, Alert } from 'react-native';
 import { trySignup, tryLogin } from '../hasuraApi';
 import ArticleList from './ArticleList'
@@ -12,7 +12,7 @@ export default class AuthScreen extends React.Component {
 	  	isLoggedIn : false,
 	  	usernameTextBox : '',
 	  	passwordTextBox : '',
-      fontsAreLoaded: false,
+      	fontsAreLoaded: false,
 	  }
   }
 
@@ -26,9 +26,12 @@ export default class AuthScreen extends React.Component {
 
   handleLoginPressed = async () => {
     let resp = await tryLogin(this.state.usernameTextBox, this.state.passwordTextBox);
-    let respJson = await resp.json();
     if(resp.status !== 200){
-      Alert.alert("Error", "Incorrect Credentials / No Internet Connection")
+      if (resp.status === 504) {
+        Alert.alert("Network Error", "Check your internet connection" )
+      } else {
+        Alert.alert("Error", "Password too short / User already exists")      
+      }
     } else {
       this.setState({isLoggedIn:true})  
     }
@@ -36,9 +39,12 @@ export default class AuthScreen extends React.Component {
 
   handleSignupPressed = async () => {
     let resp = await trySignup(this.state.usernameTextBox, this.state.passwordTextBox);
-    let respJson = await resp.json();
     if(resp.status !== 200){
-      Alert.alert("Error", "Password too short / User already exists / No Internet Connection")      
+      if (resp.status === 504) {
+        Alert.alert("Network Error", "Check your internet connection" )
+      } else {
+        Alert.alert("Error", "Password too short / User already exists")      
+      }
     } else {
       this.setState({isLoggedIn:true})  
     }
@@ -68,45 +74,50 @@ export default class AuthScreen extends React.Component {
   render() {
 	  if (this.state.fontsAreLoaded == true) {
       if(this.state.isLoggedIn === true){
-          return (
-              <ArticleList logoutCallback={this.handleLogout}/> 
-          );
-        }
+        return (
+            <ArticleList logoutCallback={this.handleLogout}/> 
+        );
+      }
     
-        return(
-          <Container>
-            <Header>
-              <Left />
-              <Body>
-                <Title> Login </Title>
-              </Body>
-              <Right />
-            </Header>
-            <Content contentContainerStyle={{justifyContent:'center', margin: 20}}>
-              <Form>
-                <Item floatingLabel>
-                  <Label>Username</Label>
-                  <Input value={this.state.usernameTextBox} onChangeText={this.handleUsernameChange}/>
-                </Item>
-                <Item floatingLabel>
-                  <Label>Password</Label>
-                  <Input value={this.state.passwordTextbox} onChangeText={this.handlePasswordChange} secureTextEntry/>
-                </Item>
-              </Form>
-              <View style = {{height:10}} />
-              <Button block onPress={this.handleSignupPressed} >
-                <Text> Sign up </Text>
-              </Button>
-              <View style = {{height:10}} />
-              <Button block title="Log in" onPress={this.handleLoginPressed} >
-                <Text> Log in </Text>
-              </Button>
-            </Content>
-          </Container>
-        )
-      }
-      else {
-        return (<Container><Text>...Loading</Text></Container>);
-      }
+      return(
+        <Container>
+          <Header>
+            <Left />
+            <Body>
+              <Title> Login </Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content contentContainerStyle={{justifyContent:'center', margin: 20}}>
+            <Form>
+              <Item floatingLabel>
+                <Label>Username</Label>
+                <Input value={this.state.usernameTextBox} onChangeText={this.handleUsernameChange}/>
+              </Item>
+              <Item floatingLabel>
+                <Label>Password</Label>
+                <Input value={this.state.passwordTextbox} onChangeText={this.handlePasswordChange} secureTextEntry/>
+              </Item>
+            </Form>
+            <View style = {{height:10}} />
+            <Button block onPress={this.handleSignupPressed} >
+              <Text> Sign up </Text>
+            </Button>
+            <View style = {{height:10}} />
+            <Button block title="Log in" onPress={this.handleLoginPressed} >
+              <Text> Log in </Text>
+            </Button>
+          </Content>
+        </Container>
+      )
+    }
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <Spinner color='black' />
+        </Content>
+      </Container>
+    );
   }
 }
