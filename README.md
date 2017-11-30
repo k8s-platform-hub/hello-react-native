@@ -4,7 +4,7 @@ Hello React Native
 Introduction
 ------------
 
-This is a fully working react-native app with a [Hasura](https://hasura.io) backend and. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
+This is a fully working react-native app with a [Hasura](https://hasura.io) backend. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
 
 - When you clone this quickstart project, there are two tables (article and author) in your database populated with some data.
 
@@ -138,7 +138,7 @@ $ hasura api-console
 ```
 
 About Auth APIs
----------
+---------------
 - Every app almost always requires some form of authentication. Hasura gives you a flexibility to implement almost every popular login mechanism (mobile, email, facebook, google etc) in your app.
 - In this application, we are using just the normal username password login. You can implement whichever login you need. The auth screen looks like this.
 
