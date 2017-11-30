@@ -4,7 +4,7 @@ Hello React Native
 Introduction
 ------------
 
-This is a fully working react-native app with a [Hasura](https://hasura.io) backend and. You can clone it and modify as per your requirements. It has basic BAAS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
+This is a fully working react-native app with a [Hasura](https://hasura.io) backend and. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
 
 - When you clone this quickstart project, there are two tables (article and author) in your database populated with some data.
 
@@ -66,7 +66,7 @@ $ git push hasura master
 
 Opening the app
 ---------------
-- Open Expo XDE, do a login/signup and click on `Open existing project...`. Browse to the hello-react-native directory and open the app folder.
+- Open Expo XDE, do a login/signup and click on `Open existing project...`. Browse to the hello-react-native directory and open the react-native folder.
 - Once the project loads, click on Share.
 - Scan the QR code using the Expo app from your phone (Install from Playstore/Appstore)
 - Fully working app will open on your phone
