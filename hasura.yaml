@@ -1,4 +1,5 @@
 description: Blank template for a Hasura project
 keywords: base, getting-started
+media: {}
 name: base
 platformVersion: v0.15.3
