@@ -30,7 +30,7 @@ export default class AuthScreen extends React.Component {
       if (resp.status === 504) {
         Alert.alert("Network Error", "Check your internet connection" )
       } else {
-        Alert.alert("Error", "Password too short / User already exists")      
+        Alert.alert("Error", "Unauthorized, Invalid username or password")      
       }
     } else {
       this.setState({isLoggedIn:true})  

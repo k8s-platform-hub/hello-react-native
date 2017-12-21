@@ -1,4 +1,4 @@
-const clusterName = "becalm88"
+const clusterName = "decampment88"
 
 const dataUrl = "https://data." + clusterName + ".hasura-app.io/v1/query";
 const loginUrl = "https://auth." + clusterName + ".hasura-app.io/v1/login";
@@ -63,7 +63,7 @@ export async function tryLogin(username, password) {
   console.log("Auth Response ---------------------");
   
   try {
-    let resp = await fetch(signupUrl, requestOptions);
+    let resp = await fetch(loginUrl, requestOptions);
     console.log(resp);
     return resp; 
   }
