@@ -158,7 +158,7 @@ Migrating an existing project
 Custom microservices
 --------------------
 - Sometimes you might need to add new microservices/APIs as per your requirements. In such cases, you can deploy your microservices with Hasura using git push or docker.
-- This quickstart comes with one such custom microservice written in nodejs using the express framework. Check it out in action at https://api.cluster-name.hasura-app.io . Currently, it just returns a "Hello-React" at that endpoint.
+- This quickstart comes with one such custom microservice written in nodejs using the express framework. Check it out in action at `https://api.<cluster-name>.hasura-app.io`. Currently, it just returns a "Hello-React" at that endpoint.
 - This microservice is in the microservices folder of the project directory. You can add your custom microservice there.
 - To generate your own custom microservice, run
 ```
