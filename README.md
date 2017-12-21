@@ -73,8 +73,10 @@ Note: You can open the app with any of your desired react-native simulators. We 
 
 (*Shoutout to [NativeBase](https://nativebase.io) for their excellent UI components.*)
 
+
 Using a database
 ---------------- 
+
 - Hasura provides instant data APIs over Postgres to make powerful data queries. For example, to select "id" and "title" of all rows from the article table, make this query to `https://data.<cluster-name>.hasura-app.io/v1/query/`
 
 ```:json
@@ -123,17 +125,19 @@ Using a database
 ```
 ![List of articles](https://github.com/hasura/hello-react-native/raw/master/readme-assets/article.png)
 
-- You can build such queries easily using the query builder on API-Console.
+- The Hasura API Console is a UI which makes managing the backend easier. To access your api-console, run
+
+```
+$ hasura api-console
+```
+
+- You can build queries easily using the query builder on API-Console.
 
 ![QueryBuilder](https://media.giphy.com/media/3oFzmaJy6xGNehrGUg/giphy.gif)
 
 - Also, there are ready made code snippets generated for the query that you build with the query builder. You can instantly copy and paste them in your code.
 
 ![CodeGen](https://media.giphy.com/media/3o7524EoojncABE5Ve/giphy.gif)
-
-```
-$ hasura api-console
-```
 
 Adding authentication
 ---------------------
