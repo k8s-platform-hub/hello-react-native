@@ -3,5 +3,5 @@
     configmap: controller-conf
     namespace: hasura
   data: null
-  kubeContext: decampment88
-  name: decampment88
+  kubeContext: bearlike11
+  name: bearlike11
