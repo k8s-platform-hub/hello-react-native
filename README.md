@@ -21,28 +21,15 @@ In order to get this app running, you must have the following:
 
 2. Expo client (XDE). Download from https://expo.io/tools
 
+3. NodeJS
+
 (For more such apps, check out https://hasura.io/hub)
 
-Getting the project
------------
-- Login with Hasura
-```
-$ hasura login
-```
+Pushing the project to the cluster
+-----------------------------------
 
-- Clone this project and enter the directory
-```
-$ hasura quickstart hello-react-native && cd hello-react-native
-```
-
-- Install node modules. Run
-```
-$ cd react-native && npm install
-```
-
- Pushing your project to the cluster
--------------------
 - To get cluster information, run `hasura cluster status`. Info will be of the following form.
+
 ```
 INFO Reading cluster status...
 INFO Status:
@@ -52,11 +39,20 @@ Kube Context:       athlete80
 Platform Version:   v0.15.3
 Cluster State:      Synced
 ```
+
 - Set the cluster name in your project by modifying `react-native -> src -> hasuraApi.js`
+
 ```:javascript
 const clusterName = athlete80;
 ```
-- Run the following commands to finally push your project to your Hasura cluster.
+
+- Install the required node modules. Run the following command from the project directory.
+
+```
+$ cd react-native && npm install
+```
+
+- Run the following commands from your project directory your project to your Hasura cluster.
 ```
 $ git add .
 $ git commit -m "Commit message"
@@ -71,22 +67,16 @@ Opening the app
 - Scan the QR code using the Expo app from your phone (Install from Playstore/Appstore)
 - Fully working app will open on your phone
 
-
 ```
 Note: You can open the app with any of your desired react-native simulators. We prefer Expo because of its simple onboarding for beginners.
 ```
 
 (*Shoutout to [NativeBase](https://nativebase.io) for their excellent UI components.*)
 
-Migrating an existing project
------------------------------
-- Replace react-native directory with your pre-existing react-native project directory.
-- run `npm install` from this new directory
-- App is ready
+Using a database
+---------------- 
+- Hasura provides instant data APIs over Postgres to make powerful data queries. For example, to select "id" and "title" of all rows from the article table, make this query to `https://data.<cluster-name>.hasura-app.io/v1/query/`
 
-About Data APIs
----------
-- Hasura provides instant data APIs to make powerful data queries. For example, to select "id" and "title" all rows from the article table, make this query to https://data.cluster-name.hasura-app.io/v1/query/
 ```:json
 {
     "type":"select",
@@ -102,7 +92,8 @@ About Data APIs
     }
 }
 ```
-- App uses the above query and renders the list of articles as shown below.
+
+- This app uses the above query and renders the list of articles as shown below.
 
 ![List of articles](https://github.com/hasura/hello-react-native/raw/master/readme-assets/list.png)
 
@@ -132,28 +123,37 @@ About Data APIs
 ```
 ![List of articles](https://github.com/hasura/hello-react-native/raw/master/readme-assets/article.png)
 
-- The API-console has awesome features that show you the amazing things you can do with the data APIs. Run this command from your project directory to open the API-console.
+- You can build such queries easily using the query builder on API-Console.
+
+![QueryBuilder](https://media.giphy.com/media/3oFzmaJy6xGNehrGUg/giphy.gif)
+
+- Also, there are ready made code snippets generated for the query that you build with the query builder. You can instantly copy and paste them in your code.
+
+![CodeGen](https://media.giphy.com/media/3o7524EoojncABE5Ve/giphy.gif)
+
 ```
 $ hasura api-console
 ```
 
-About Auth APIs
----------------
+Adding authentication
+---------------------
 - Every app almost always requires some form of authentication. Hasura gives you a flexibility to implement almost every popular login mechanism (mobile, email, facebook, google etc) in your app.
 - In this application, we are using just the normal username password login. You can implement whichever login you need. The auth screen looks like this.
 
 ![List of articles](https://github.com/hasura/hello-react-native/raw/master/readme-assets/auth.png)
 
 - You can try out all the auth APIs in the API console. Check out.
+
 ```
 $ hasura api-console
 ```
 
-Filestore
----------
-- Securely add, remove, manage, update files such as pictures, videos, documents using Hasura filestore.
-- Read more about our filestore [here](https://docs.hasura.io/0.15/manual/files/index.html).
-- Try uploading a file to your database from the api-console.
+Migrating an existing project
+-----------------------------
+- Replace react-native directory with your pre-existing react-native project directory.
+- run `npm install` from this new directory
+- Make changes in your backend with API-Console
+- App is ready
 
 Custom microservices
 --------------------
