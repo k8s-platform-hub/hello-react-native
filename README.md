@@ -4,7 +4,7 @@ Hello React Native
 Introduction
 ------------
 
-This is a fully working react-native app with a [Hasura](https://hasura.io) backend. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
+This is a fully working react-native(CRNA) app with a [Hasura](https://hasura.io) backend. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
 
 - When you clone this quickstart project, there are two tables (article and author) in your database populated with some data.
 
@@ -52,7 +52,7 @@ const clusterName = athlete80;
 $ cd react-native && npm install
 ```
 
-- Run the following commands from your project directory your project to your Hasura cluster.
+- Run the following commands from your hello-react-native directory to push the cloned project to your Hasura cluster.
 ```
 $ git add .
 $ git commit -m "Commit message"
@@ -154,9 +154,9 @@ $ hasura api-console
 
 Migrating an existing project
 -----------------------------
-- Replace react-native directory with your pre-existing react-native project directory.
-- run `npm install` from this new directory
-- Make changes in your backend with API-Console
+- Replace react-native directory with your pre-existing react-native(crna) project directory.
+- run `npm install` from this new directory 
+- Make changes in your backend with API-Console (With the command hasura api-console)
 - App is ready
 
 Custom microservices
