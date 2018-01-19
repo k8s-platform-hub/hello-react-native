@@ -203,4 +203,4 @@ notify:
     upstreamServicePort: 80
     corsPolicy: allow_all
 
-# To see actual endpoints for these routes, use `$ hasura cluster status`
+# To see actual endpoints for these routes, use `$ hasura ms ls`
