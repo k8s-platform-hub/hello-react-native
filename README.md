@@ -1,8 +1,6 @@
-Hello React Native
-==================
+# Hello React Native
 
-Introduction
-------------
+## What does this come with?
 
 This is a fully working react-native app with a [Hasura](https://hasura.io) backend. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
 
@@ -16,6 +14,10 @@ Note: This is just to get you familiar with the system. You can delete these tab
 - Then we make data API calls to get the list of articles and their authors.
 - The functions that make these calls are in the `react-native/src/hasuraApi.js` file. Modify it as you like and the changes will reflect in the app.
 
+## How to get it running?
+
+### Reqirements
+
 In order to get this app running, you must have the following:
 1. [hasura CLI tool](https://docs.hasura.io/0.15/manual/install-hasura-cli.html) (hasura).
 
@@ -25,8 +27,7 @@ In order to get this app running, you must have the following:
 
 (For more such apps, check out https://hasura.io/hub)
 
-Pushing the project to the cluster
------------------------------------
+### Pushing the project to the cluster
 
 - To get cluster information, run `hasura cluster status`. Info will be of the following form.
 
@@ -52,7 +53,7 @@ const clusterName = athlete80;
 $ cd react-native && npm install
 ```
 
-- Run the following commands from your project directory your project to your Hasura cluster.
+- Run the following commands from the project directory to push it to your Hasura cluster.
 ```
 $ git add .
 $ git commit -m "Commit message"
@@ -60,8 +61,8 @@ $ git push hasura master
 ```
 **The app is now ready to use!!**
 
-Opening the app
----------------
+### Opening the app
+
 - Open Expo XDE, do a login/signup and click on `Open existing project...`. Browse to the hello-react-native directory and open the react-native folder.
 - Once the project loads, click on Share.
 - Scan the QR code using the Expo app from your phone (Install from Playstore/Appstore)
@@ -74,8 +75,7 @@ Note: You can open the app with any of your desired react-native simulators. We 
 (*Shoutout to [NativeBase](https://nativebase.io) for their excellent UI components.*)
 
 
-Using a database
----------------- 
+## How to include a database?
 
 - Hasura provides instant data APIs over Postgres to make powerful data queries. For example, to select "id" and "title" of all rows from the article table, make this query to `https://data.<cluster-name>.hasura-app.io/v1/query/`
 
@@ -139,8 +139,8 @@ $ hasura api-console
 
 ![CodeGen](https://media.giphy.com/media/3o7524EoojncABE5Ve/giphy.gif)
 
-Adding authentication
----------------------
+## How to add authentication?
+
 - Every app almost always requires some form of authentication. Hasura gives you a flexibility to implement almost every popular login mechanism (mobile, email, facebook, google etc) in your app.
 - In this application, we are using just the normal username password login. You can implement whichever login you need. The auth screen looks like this.
 
@@ -152,19 +152,20 @@ Adding authentication
 $ hasura api-console
 ```
 
-Migrating an existing project
------------------------------
+## How to migrate from an existing project?
+
 - Replace react-native directory with your pre-existing react-native project directory.
 - run `npm install` from this new directory
 - Make changes in your backend with API-Console
 - App is ready
 
-Custom microservices
---------------------
+## How to use a custom API/server?
+
 - Sometimes you might need to add new microservices/APIs as per your requirements. In such cases, you can deploy your microservices with Hasura using git push or docker.
 - This quickstart comes with one such custom microservice written in nodejs using the express framework. Check it out in action at `https://api.<cluster-name>.hasura-app.io`. Currently, it just returns a "Hello-React" at that endpoint.
 - This microservice is in the microservices folder of the project directory. You can add your custom microservice there.
 - To generate your own custom microservice, run
+
 ```
 $ hasura microservice generate --help
 ```
