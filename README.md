@@ -60,6 +60,7 @@ $ git commit -m "Commit message"
 $ git push hasura master
 ```
 **The app is now ready to use!!**
+Keep a note of your cluster name. Alternatively, you can also go to your [hasura dashboard](https://dashboard.hasura.io) and see the clusters you have.
 
 ### Opening the app
 
