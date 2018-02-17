@@ -1,4 +1,4 @@
-const clusterName = "bearlike11"
+const clusterName = "chlorine96"
 
 const dataUrl = "https://data." + clusterName + ".hasura-app.io/v1/query";
 const loginUrl = "https://auth." + clusterName + ".hasura-app.io/v1/login";
@@ -28,11 +28,9 @@ export async function trySignup(username, password) {
   };
 
   requestOptions["body"] = JSON.stringify(body);
-  console.log("Auth Response ---------------------");
-  
+ 
   try {
     let resp = await fetch(signupUrl, requestOptions);
-    console.log(resp);
     return resp; 
   }
   catch(e) {
@@ -59,12 +57,9 @@ export async function tryLogin(username, password) {
   };
 
   requestOptions["body"] = JSON.stringify(body);
-
-  console.log("Auth Response ---------------------");
   
   try {
     let resp = await fetch(loginUrl, requestOptions);
-    console.log(resp);
     return resp; 
   }
   catch(e) {
@@ -94,10 +89,8 @@ export async function getArticleList() {
   };
 
   requestOptions["body"] = JSON.stringify(body);
-  console.log('Data Response ---------------------');
   try {
   	let resp = await fetch(dataUrl, requestOptions);
-    console.log(resp);
   	return resp; 
   }
   catch(e) {
@@ -139,10 +132,8 @@ export async function getArticle(id) {
   };
 
   requestOptions["body"] = JSON.stringify(body);
-  console.log('Data Response ---------------------');
   try{
   	let resp = await fetch(dataUrl, requestOptions);
-    console.log(resp);
   	return resp;
   }
   catch (e) {

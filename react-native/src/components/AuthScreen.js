@@ -33,6 +33,7 @@ export default class AuthScreen extends React.Component {
         Alert.alert("Error", "Unauthorized, Invalid username or password")      
       }
     } else {
+      console.log('Auth successfull');
       this.setState({isLoggedIn:true})  
     }
   }
@@ -46,6 +47,7 @@ export default class AuthScreen extends React.Component {
         Alert.alert("Error", "Password too short / User already exists")      
       }
     } else {
+      console.log('Auth successfull')
       this.setState({isLoggedIn:true})  
     }
   }
