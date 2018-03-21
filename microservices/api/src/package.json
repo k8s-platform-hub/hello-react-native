@@ -1,17 +1,18 @@
 {
-  "name": "hello-node-js",
+  "name": "socket-io-react",
   "version": "1.0.0",
-  "description": "A simple node-js-express app",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {},
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jaison",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "morgan": "^1.9.0",
-    "request": "^2.83.0",
-    "request-debug": "^0.2.0"
-  }
+  "author": "",
+  "license": "ISC"
 }

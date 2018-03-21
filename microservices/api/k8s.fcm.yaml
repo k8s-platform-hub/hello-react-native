@@ -20,6 +20,12 @@ items:
       spec:
         containers:
         - image: hasura/hello-world:latest
+          env:
+          - name: FCM_KEY
+            valueFrom:
+              secretKeyRef:
+                key: fcm.key
+                name: hasura-secrets
           imagePullPolicy: IfNotPresent
           name: api
           ports:

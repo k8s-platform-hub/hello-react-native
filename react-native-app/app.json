@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "sdkVersion": "25.0.0",
+    "name": "Hasura Auth Kit",
+    "version": "1.0",
+    "ios": {
+      "bundleIdentifier": "io.hasura.reactnative.auth"
+    },
+    "android": {
+      "package": "io.hasura.reactnative.auth"
+    }
+  }
+}

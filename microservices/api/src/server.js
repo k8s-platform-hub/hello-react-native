@@ -1,24 +1,38 @@
-var express = require('express');
-var app = express();
-var request = require('request');
-var router = express.Router();
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-require('request-debug')(request);
+const express = require("express");
+const http = require("http");
+const app = express();
+const server = http.Server(app);
 
-var hasuraExamplesRouter = require('./hasuraExamples');
+const bodyParser = require('body-parser');
 
-var server = require('http').Server(app);
-
-router.use(morgan('dev'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-app.use('/', hasuraExamplesRouter);
+const customRoutes = require("./custom-logic/routes");
+const pushNotifRoutes = require("./push-notif/routes");
 
-app.listen(8080, function () {
-  console.log('Example app listening on port 8080!');
+const socketClient = require("socket.io");
+const io = socketClient(server);
+
+app.use(customRoutes);
+app.use(pushNotifRoutes);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.get("origin"));
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+io.on("connection", socket => {
+  socket.emit('connected', 'Welcome to the socket server');
+  socket.on("message", (msg) => {
+    socket.emit('message', ('The message you sent is: ' + msg));
+  })
+  socket.on("disconnect", () => console.log("Client disconnected"));
+});
+
+server.listen(8080, () =>{
+  console.log(`Listening on port 8080`);
 });

@@ -1,5 +1,5 @@
 {
-  "name": "mod",
+  "name": "hasura-auth",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -22,6 +22,9 @@
     "expo": "^25.0.0",
     "native-base": "^2.3.9",
     "react": "16.2.0",
-    "react-native": "0.52.0"
+    "react-native": "0.52.0",
+    "react-native-vector-icons": "^4.5.0",
+    "react-navigation": "^1.4.0",
+    "socket.io-client": "^2.0.4"
   }
 }
