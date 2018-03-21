@@ -7,25 +7,25 @@ registry: {{ cluster.metadata.registry|json }}
 remotes:
   # Example:
 
-  # remote-name:
-  #   namespace.service-name:
-  #     container-name:
-  #       path: microservices/app
-  #       dockerfile: microservices/app/Dockerfile
+  # name: remote-name
+  # deployments:
+  # - name: deployment-name
+  #   namespace: deployment-namespace
+  #   containers:
+  #   - name: container-name:
+  #     dockerBuild:
+  #       contextPath: microservices/app
+  #       dockerfilePath: microservices/app/Dockerfile
 
   # Default remote to push code and configuration
-  {{ cluster.name }}:        # DO NOT edit this line
-    <<: {}                   # DO NOT edit this line
+- name: '{{ cluster.name }}'      # DO NOT edit this line
+  deployments:                  # DO NOT edit this line
 
-    '{{ cluster.metadata.namespaces.user }}.api':
-      api:
-        dockerfile: microservices/api/Dockerfile
-        path: microservices/api
-    # Add new remotes here above this line
-    # Example:
-
-    # remote-name:
-    #   namespace.service-name:
-    #     container-name:
-    #       path: services/app
-    #       dockerfile: services/app/Dockerfile
+    # Add output of `hasura conf generate-remote` below this line
+  - name: api
+    namespace: '{{ cluster.metadata.namespaces.user }}'
+    containers:
+    - name: api
+      dockerBuild:
+        dockerfilePath: microservices/api/Dockerfile
+        contextPath: microservices/api
