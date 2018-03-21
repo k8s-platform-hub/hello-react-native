@@ -2,6 +2,7 @@ import {clusterName} from '../../../Hasura';
 
 const authUrl = `https://auth.${clusterName}.hasura-app.io/v1/`;
 
+// modify this function if you wish to implement your own username signup
 const trySignup = async (username, password) => {
   const signupUrl = authUrl + 'signup';
   const options = {
@@ -30,6 +31,7 @@ const trySignup = async (username, password) => {
   }
 }
 
+// modify this function if you wish to implement your own login
 const tryLogin = async (username, password) => {
   const loginUrl = authUrl + 'login';
   const options = {

@@ -178,6 +178,17 @@ export default class AuthHome extends React.Component {
     return null;
   }
 
+  logoView = () => {
+    return (
+      <View style={styles.logoContainer}>
+        <Image
+          style={styles.logo}
+          source={{uri: 'https://www.colessecuritysystems.com/wp-content/uploads/2016/09/logo-placeholder.jpg'}}
+        />
+      </View>
+    );
+  }
+
   error() {
     return (
       <View style={styles.homeContainer}>
@@ -242,6 +253,7 @@ export default class AuthHome extends React.Component {
             <Right />
           </Header>
           <View style={styles.homeContainer}>
+            {this.logoView()}
             {this.usernameLoginButton()}
             {this.emailLoginButton()}
             {this.mobileLoginButton()}

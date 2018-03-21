@@ -1,16 +1,16 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import { Container, Text, Header, Left, Right, Body, Button, Icon, Tab, Tabs } from 'native-base';
 import OTP from './OTP';
 import {loadFonts} from '../../actions';
+import {index} from '../../stylesheet';
+
+const styles = StyleSheet.create(index);
 
 export default class IndexOtp extends React.Component {
 
   async componentWillMount() {
     await loadFonts();
-  }
-
-  goToLoginScreen = () => {
-    this.tabView.goToPage(1);
   }
 
   render() {
@@ -31,11 +31,11 @@ export default class IndexOtp extends React.Component {
             {backButton()}
           </Left>
           <Body>
-            <Text>OTP</Text>
+            <Text style={styles.headerText}>OTP</Text>
           </Body>
           <Right />
         </Header>
-        <Tabs initialPage={1} ref={(tabView) => {this.tabView=tabView}}>
+        <Tabs initialPage={0} ref={(tabView) => {this.tabView=tabView}}>
           <Tab heading="Signup">
             <OTP loginCallback={this.props.loginCallback} task="signup"/>
           </Tab>

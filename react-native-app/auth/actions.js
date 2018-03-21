@@ -1,9 +1,13 @@
 import {AsyncStorage} from 'react-native';
 import React from 'react';
-import {clusterName} from '../Hasura';
+import {clusterName, useHasuraApis, config} from '../Hasura';
 import Expo from 'expo';
 
 const fetchAuthConf = async () => {
+  if (useHasuraApis === false) {
+    config["success"] = true;
+    return config;
+  }
   const url = `https://auth.${clusterName}.hasura-app.io/ui/conf`;
   const options = {
     'method': 'GET'

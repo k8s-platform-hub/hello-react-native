@@ -4,7 +4,7 @@ import {email} from '../../stylesheet';
 import {tryEmailLogin, forgotPassword, resendVerification} from './actions';
 import {storeSession, loadFonts} from '../../actions';
 
-import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
+import {StyleSheet, View, Alert, Platform} from 'react-native';
 
 const styles = StyleSheet.create(email);
 const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -117,9 +117,9 @@ export default class EmailLogin extends React.Component {
     const loginResp = await tryEmailLogin(email, password);
     this.unsetLoading();
     if (loginResp.success) {
-      await storeSession({id: loginResp.hasura_id, token: loginResp.auth_token, email});
+      await storeSession({id: loginResp.hasura_id, token: loginResp.auth_token, email, type: "email"});
       Alert.alert('Success', 'Authentication Successful');
-      this.props.loginCallback({id: loginResp.hasura_id, token: loginResp.auth_token, email})
+      this.props.loginCallback({id: loginResp.hasura_id, token: loginResp.auth_token, email, type: "email"})
       return;
     } else {
       Alert.alert('Request failed', loginResp.message);
@@ -128,37 +128,38 @@ export default class EmailLogin extends React.Component {
   }
 
   render() {
+    const platform = Platform.OS;
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
-        <View style={styles.container}>
-          <Form>
-            <Item style={styles.textbox}>
-              <Input
-                placeholder="Email"
-                value={this.state.email}
-                onChangeText={this.handleEmailChange}
-                keyboardType="email-address"
-                autoCorrect={false}
-              />
-            </Item>
-            <Item style={styles.textbox}>
-              <Input
-                placeholder="Password"
-                secureTextEntry
-                value={this.state.password}
-                onChangeText={this.handlePasswordChange}
-              />
-            </Item>
-          </Form>
-          <Button full dark onPress={this.handleLoginPress} style={styles.button} disabled={this.state.loading}>
-            <Text> {this.state.loading ? "Please wait" : "Login"} </Text>
-          </Button>
-          <View style={styles.textContainer}>
-            <Text style={styles.text} onPress={this.handleForgotPasswordPress} disabled={this.state.fpLoading}>{this.state.fpLoading ? "Please wait" : "Forgot Password"}</Text>
-            <Text style={styles.text} onPress={this.handleResendVerificationPress} disabled={this.state.rvLoading}>{this.state.rvLoading ? "Please wait" : "Resend Verification"}</Text>
-          </View>
+      <View style={styles.container}>
+        <Form>
+          <Item style={styles.textbox}>
+            <Input
+              placeholder="Email"
+              value={this.state.email}
+              onChangeText={this.handleEmailChange}
+              keyboardType="email-address"
+              autoCorrect={false}
+              autoCapitalize="none"
+            />
+          </Item>
+          <Item style={styles.textbox}>
+            <Input
+              placeholder="Password"
+              secureTextEntry
+              value={this.state.password}
+              onChangeText={this.handlePasswordChange}
+              autoCapitalize="none"
+            />
+          </Item>
+        </Form>
+        <Button full dark={platform === "ios"} onPress={this.handleLoginPress} style={styles.button} disabled={this.state.loading}>
+          <Text> {this.state.loading ? "Please wait" : "Login"} </Text>
+        </Button>
+        <View style={styles.textContainer}>
+          <Text style={styles.text} onPress={this.handleForgotPasswordPress} disabled={this.state.fpLoading}>{this.state.fpLoading ? "Please wait" : "Forgot Password"}</Text>
+          <Text style={styles.text} onPress={this.handleResendVerificationPress} disabled={this.state.rvLoading}>{this.state.rvLoading ? "Please wait" : "Resend Verification"}</Text>
         </View>
-      </TouchableWithoutFeedback>
+      </View>
     );
   }
 }

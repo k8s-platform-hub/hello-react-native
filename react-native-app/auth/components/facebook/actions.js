@@ -7,7 +7,8 @@ const tryFbLogin = async (token) => {
   const fbUrl = 'https://graph.facebook.com/me?access_token=' + token;
   let fbProfileInfo = null;
   try {
-    fbProfileInfo = await fetch(fbUrl);
+    fbResp = await fetch(fbUrl);
+    fbProfileInfo = await fbResp.json();
   } catch (e) {
     console.log(e);
     return {
@@ -51,12 +52,14 @@ const handleFacebookAuth = async(appId, loginCallback, loading, stopLoading) => 
           await storeSession({
             id: facebookProfileInfo.hasura_id,
             token: facebookProfileInfo.auth_token,
-            facebookProfileInfo: facebookProfileInfo.facebook_profile_info
+            facebookProfileInfo: facebookProfileInfo.fb_profile_info,
+            type: "facebook"
           });
           loginCallback({
             id: facebookProfileInfo.hasura_id,
             token: facebookProfileInfo.auth_token,
-            facebookProfileInfo: facebookProfileInfo.facebook_profile_info
+            facebookProfileInfo: facebookProfileInfo.fb_profile_info,
+            type: "facebook"
           });
           return;
         }
@@ -65,7 +68,7 @@ const handleFacebookAuth = async(appId, loginCallback, loading, stopLoading) => 
           stopLoading();
         }
       } else {
-        Alert.alert('Error', 'Facebook login failed');
+        console.log("Facebook login failed: Type: " + type);
         stopLoading();
       }
     } catch (e) {

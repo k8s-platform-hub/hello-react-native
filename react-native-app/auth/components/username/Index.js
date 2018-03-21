@@ -1,8 +1,12 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import { Container, Text, Header, Left, Right, Body, Button, Icon, Tab, Tabs } from 'native-base';
 import UsernameLogin from './Login';
 import UsernameSignup from './Signup';
 import {loadFonts} from '../../actions';
+import {index} from '../../stylesheet';
+
+const styles = StyleSheet.create(index);
 
 export default class IndexUsername extends React.Component {
 
@@ -32,11 +36,11 @@ export default class IndexUsername extends React.Component {
             {backButton()}
           </Left>
           <Body>
-            <Text>Username</Text>
+            <Text style={styles.headerText}>Username</Text>
           </Body>
           <Right />
         </Header>
-        <Tabs initialPage={1} ref={(tabView) => {this.tabView=tabView}}>
+        <Tabs ref={(tabView) => {this.tabView=tabView}}>
           <Tab heading="Signup">
             <UsernameSignup loginCallback={this.props.loginCallback}/>
           </Tab>

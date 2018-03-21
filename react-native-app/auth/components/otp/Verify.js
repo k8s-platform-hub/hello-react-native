@@ -4,11 +4,11 @@ import {otp} from '../../stylesheet';
 import {verifyOtp, sendOtp} from './actions';
 import {storeSession, loadFonts} from '../../actions';
 
-import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
+import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, Alert, Platform} from 'react-native';
 
 const styles = StyleSheet.create(otp);
 
-export default class SendOtp extends React.Component {
+export default class Verify extends React.Component {
   state = {
     countryCode: '',
     number: '',
@@ -56,8 +56,8 @@ export default class SendOtp extends React.Component {
     this.unsetLoading();
     if (authResp.success) {
       Alert.alert('Success', 'Authentication successful');
-      await storeSession({id: authResp.hasura_id, token: authResp.auth_token});
-      this.props.loginCallback({id: authResp.hasura_id, token: authResp.auth_token, mobile: this.props.number});
+      await storeSession({id: authResp.hasura_id, token: authResp.auth_token, type: "mobile"});
+      this.props.loginCallback({id: authResp.hasura_id, token: authResp.auth_token, mobile: this.props.number, type: "mobile"});
       return;
     } else {
       Alert.alert('Request failed', authResp.message);
@@ -66,21 +66,22 @@ export default class SendOtp extends React.Component {
 
   resendOtp = async () => {
     this.setRsoLoading();
-    const sendOtpResp = await sendOtp(this.state.countryCode, this.state.number);
+    const sendOtpResp = await sendOtp(this.props.countryCode, this.props.number);
     this.unsetRsoLoading();
     if (sendOtpResp.success) {
-      Alert.alert(`OTP sent to ${this.state.countryCode}-${this.state.number}`);
+      Alert.alert(`OTP sent to ${this.props.countryCode}-${this.props.number}`);
     } else {
       Alert.alert('Sending OTP Failed', sendOtpResp.message);
     }
   }
 
   render() {
+    const platform = Platform.OS;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container} >
           <View style={styles.numberContainer}>
-            <Text style={{textAlign:'center', fontStyle: 'italic'}}> Please enter the OTP sent to {this.state.countryCode}-{this.state.number}</Text>
+            <Text style={{textAlign:'center', fontStyle: 'italic'}}> Please enter the OTP sent to {this.props.countryCode}-{this.props.number}</Text>
           </View>
           <Form>
             <View style={styles.numberContainer}>
@@ -90,7 +91,7 @@ export default class SendOtp extends React.Component {
             </View>
           </Form>
           <View style={styles.numberContainer}>
-            <Button full dark style={styles.button} onPress={this.verifyOtp} disabled={this.state.loading}>
+            <Button full dark={platform === "ios"} style={styles.button} onPress={this.verifyOtp} disabled={this.state.loading}>
               <Text>{this.state.loading ? "Please wait" : "Verify"}</Text>
             </Button>
           </View>

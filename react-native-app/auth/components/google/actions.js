@@ -6,11 +6,12 @@ import {clusterName} from '../../../Hasura';
 const tryGoogleLogin = async (token) => {
   let googleInfo = null;
   try {
-    googleInfo = fetch ('https://www.googleapis.com/userinfo/v2/me', {
+    const googleResp = await fetch ('https://www.googleapis.com/userinfo/v2/me', {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
+    googleInfo = await googleResp.json();
   } catch (e) {
     console.log(e);
     return {
@@ -58,12 +59,14 @@ const handleGoogleAuth = async(androidClientId, iosClientId, loginCallback, star
         await storeSession({
           id: googleSignupResp.hasura_id,
           token: googleSignupResp.auth_token,
-          googleInfo: googleSignupResp.google_profile_info
+          googleInfo: googleSignupResp.google_profile_info,
+          type: "google"
         });
         loginCallback({
           id: googleSignupResp.hasura_id,
           token: googleSignupResp.auth_token,
-          googleInfo: googleSignupResp.google_profile_info
+          googleInfo: googleSignupResp.google_profile_info,
+          type: "google"
         });
         return;
       } else {
@@ -75,7 +78,7 @@ const handleGoogleAuth = async(androidClientId, iosClientId, loginCallback, star
       stopLoadingIndicator();
     }
   } catch (e) {
-    Alert.alert('Request failed', e.message);
+    console.log(e);
     stopLoadingIndicator();
   }
 }

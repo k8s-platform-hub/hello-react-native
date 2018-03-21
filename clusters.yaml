@@ -1,7 +1,7 @@
 - alias: hasura
   config:
     configmap: controller-conf
-    namespace: hasura
+    namespace: contest18-hasura
   data: null
-  kubeContext: bearlike11
-  name: bearlike11
+  kubeContext: contest18
+  name: contest18

@@ -1,8 +1,12 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import { Container, Text, Header, Left, Right, Body, Button, Icon, Tab, Tabs } from 'native-base';
 import EmailLogin from './Login';
 import EmailSignup from './Signup';
 import {loadFonts} from '../../actions';
+import {index} from '../../stylesheet';
+
+const styles = StyleSheet.create(index);
 
 export default class IndexEmail extends React.Component {
 
@@ -32,11 +36,11 @@ export default class IndexEmail extends React.Component {
             {backButton()}
           </Left>
           <Body>
-            <Text>Email</Text>
+            <Text style={styles.headerText}>Email</Text>
           </Body>
           <Right />
         </Header>
-        <Tabs initialPage={1} ref={(tabView) => {this.tabView=tabView}}>
+        <Tabs ref={(tabView) => {this.tabView=tabView}}>
           <Tab heading="Signup">
             <EmailSignup loginCallback={this.props.loginCallback} loginScreenCallback={this.goToLoginScreen}/>
           </Tab>

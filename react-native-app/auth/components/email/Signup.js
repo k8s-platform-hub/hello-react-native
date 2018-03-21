@@ -4,7 +4,7 @@ import {email} from '../../stylesheet';
 import {tryEmailSignup} from './actions';
 import {storeSession, loadFonts} from '../../actions';
 
-import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
+import {StyleSheet, View, Alert, Platform} from 'react-native';
 
 const styles = StyleSheet.create(email);
 
@@ -77,39 +77,43 @@ export default class EmailSignup extends React.Component {
   }
 
   render() {
+    const platform = Platform.OS;
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.container}>
-          <Form>
-            <Item style={styles.textbox}>
-              <Input
-                placeholder="Email"
-                value={this.state.email}
-                onChangeText={this.handleEmailChange}
-                keyboardType="email-address"
-                autoCorrect={false}
-              />
-            </Item>
-            <Item style={styles.textbox}>
-              <Input
-                placeholder="Password"
-                secureTextEntry
-                value={this.state.password}
-                onChangeText={this.handlePasswordChange}/>
-            </Item>
-            <Item style={styles.textbox}>
-              <Input
-                secureTextEntry
-                placeholder="Confirm Password"
-                value= {this.state.cPassword}
-                onChangeText={this.handleCPasswordChange}/>
-            </Item>
-          </Form>
-          <Button full dark onPress={this.handleSignupPress} style={styles.button} disabled={this.state.loading}>
-            <Text>{this.state.loading ? "Please wait" : "Sign up"}</Text>
-          </Button>
-        </View>
-      </TouchableWithoutFeedback>
+      <View style={styles.container}>
+        <Form>
+          <Item style={styles.textbox}>
+            <Input
+              placeholder="Email"
+              value={this.state.email}
+              onChangeText={this.handleEmailChange}
+              keyboardType="email-address"
+              autoCorrect={false}
+              autoCapitalize="none"
+            />
+          </Item>
+          <Item style={styles.textbox}>
+            <Input
+              placeholder="Password"
+              secureTextEntry
+              value={this.state.password}
+              onChangeText={this.handlePasswordChange}
+              autoCapitalize="none"
+            />
+          </Item>
+          <Item style={styles.textbox}>
+            <Input
+              secureTextEntry
+              placeholder="Confirm Password"
+              value= {this.state.cPassword}
+              onChangeText={this.handleCPasswordChange}
+              autoCapitalize="none"
+            />
+          </Item>
+        </Form>
+        <Button full dark={platform === "ios"} onPress={this.handleSignupPress} style={styles.button} disabled={this.state.loading}>
+          <Text>{this.state.loading ? "Please wait" : "Sign up"}</Text>
+        </Button>
+      </View>
     );
   }
 }

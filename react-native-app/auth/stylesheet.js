@@ -1,3 +1,5 @@
+import {Platform} from 'react-native';
+
 const home = {
   homeContainer: {
     flex: 1,
@@ -7,12 +9,13 @@ const home = {
   header: {
   },
   headerText: {
+    color: (Platform.OS === 'ios') ? null : "white"
   },
   button: {
     flexDirection: 'row',
     height: 50,
     justifyContent: 'flex-start',
-    paddingLeft: 40 
+    paddingLeft: 40
   },
   homeButtonContainer: {
     flexDirection: 'column',
@@ -25,6 +28,16 @@ const home = {
   buttonText : {
     fontSize: 15,
     color: 'white'
+  },
+  logoContainer: {
+    flexDirection: 'column',
+    marginHorizontal: 10,
+    alignItems: 'center',
+    paddingVertical: 20
+  },
+  logo: {
+    width: 200,
+    height: 200
   }
 };
 
@@ -36,6 +49,7 @@ const username = {
   header: {
   },
   headerText: {
+    color: (Platform.OS === 'ios') ? null : "white"
   },
   itemContainer: {
     marginVertical: 20,
@@ -61,6 +75,7 @@ const otp = {
   header: {
   },
   headerText: {
+    color: (Platform.OS === 'ios') ? null : "white"
   },
   numberContainer: {
     flexDirection: 'row',
@@ -83,10 +98,11 @@ const otp = {
     height: 80,
     padding: 10,
     width: 100,
+    justifyContent: 'flex-end'
   },
   otpTextBox: {
     textAlign: 'center',
-    fontSize: 50
+    fontSize: 30
   },
   resendText: {
     flexDirection: 'row',
@@ -105,6 +121,7 @@ const email = {
   header: {
   },
   headerText: {
+    color: (Platform.OS === 'ios') ? null : "white"
   },
   itemContainer: {
     marginVertical: 20,
@@ -130,9 +147,16 @@ const email = {
   }
 }
 
+const index = {
+  headerText: {
+    color: (Platform.OS === 'ios') ? null : "white"
+  }
+}
+
 export {
   home,
   username,
   otp,
-  email
+  email,
+  index
 }

@@ -4,7 +4,7 @@ import {otp} from '../../stylesheet';
 import {sendOtp} from './actions';
 import {storeSession, loadFonts} from '../../actions';
 
-import {StyleSheet, View, TextInput, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
+import {StyleSheet, View, TextInput, Alert, Platform} from 'react-native';
 
 const styles = StyleSheet.create(otp);
 
@@ -57,29 +57,28 @@ export default class SendOtp extends React.Component {
     }
   }
   render() {
+    const platform = Platform.OS;
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.container} >
-          <View style={styles.numberContainer}>
-            <Text style={{textAlign:'center', fontStyle: 'italic'}}> Please enter your mobile number with country code</Text>
-          </View>
-          <Form>
-            <View style={styles.numberContainer}>
-              <Item style={styles.countryCode}>
-                <Input value={this.state.countryCode} onChangeText={this.handleCountryCodeChange} />
-              </Item>
-              <Item style={styles.number}>
-                <Input value={this.state.number} onChangeText={this.handleNumberChange} keyboardType="phone-pad" />
-              </Item>
-            </View>
-          </Form>
-          <View style={styles.numberContainer}>
-            <Button full dark style={styles.button} onPress={this.sendOtp} disabled={this.state.loading} >
-              <Text>{this.state.loading ? "Please wait" : `Send OTP to ${this.props.task}`}</Text>
-            </Button>
-          </View>
+      <View style={styles.container} >
+        <View style={styles.numberContainer}>
+          <Text style={{textAlign:'center', fontStyle: 'italic'}}> Please enter your mobile number with country code</Text>
         </View>
-      </TouchableWithoutFeedback>
+        <Form>
+          <View style={styles.numberContainer}>
+            <Item style={styles.countryCode}>
+              <Input value={this.state.countryCode} onChangeText={this.handleCountryCodeChange} />
+            </Item>
+            <Item style={styles.number}>
+              <Input value={this.state.number} onChangeText={this.handleNumberChange} keyboardType="phone-pad" />
+            </Item>
+          </View>
+        </Form>
+        <View style={styles.numberContainer}>
+          <Button full dark={platform === "ios"} style={styles.button} onPress={this.sendOtp} disabled={this.state.loading} >
+            <Text>{this.state.loading ? "Please wait" : `Send OTP to ${this.props.task}`}</Text>
+          </Button>
+        </View>
+      </View>
     );
   }
 }
