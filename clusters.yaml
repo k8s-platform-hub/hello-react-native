@@ -1,7 +1,0 @@
-- alias: hasura
-  config:
-    configmap: controller-conf
-    namespace: hasura
-  data: null
-  kubeContext: bearlike11
-  name: bearlike11
