@@ -33,6 +33,7 @@ export default class DataComponent extends React.Component {
       return (
         <View style={styles.container}>
           <Text>No data and/or table found.</Text>
+          <Button title="Back" onPress={this.props.goBack} />
         </View>
       );
     }
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
   textbox: {
     marginVertical: 40,
