@@ -1,0 +1,9 @@
+- args:
+    sql: ALTER TABLE "user_education" ALTER COLUMN "user_id" TYPE integer;
+  type: run_sql
+- args:
+    sql: ALTER TABLE "user_education" ALTER COLUMN "user_id" DROP DEFAULT;
+  type: run_sql
+- args:
+    sql: ALTER TABLE "user_education" ALTER COLUMN "user_id" SET NOT NULL;
+  type: run_sql

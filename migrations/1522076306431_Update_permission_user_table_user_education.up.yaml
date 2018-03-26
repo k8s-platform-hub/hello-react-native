@@ -1,0 +1,11 @@
+- args:
+    permission:
+      columns:
+      - degree
+      - institution_name
+      filter:
+        user_id:
+          $eq: X-HASURA-USER-ID
+    role: user
+    table: user_education
+  type: create_update_permission

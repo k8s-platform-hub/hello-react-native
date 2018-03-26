@@ -1,0 +1,17 @@
+- args:
+    role: user
+    table: user_education
+  type: drop_select_permission
+- args:
+    permission:
+      columns:
+      - degree
+      - id
+      - institution_name
+      - user_id
+      filter:
+        user_id:
+          $eq: X-HASURA-USER-ID
+    role: user
+    table: user_education
+  type: create_select_permission

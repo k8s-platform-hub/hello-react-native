@@ -1,0 +1,9 @@
+- args:
+    permission:
+      allow_upsert: true
+      check:
+        user_id:
+          $eq: X-HASURA-USER-ID
+    role: user
+    table: user_education
+  type: create_insert_permission

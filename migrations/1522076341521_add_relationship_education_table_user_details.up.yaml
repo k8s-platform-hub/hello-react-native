@@ -1,0 +1,8 @@
+- args:
+    name: education
+    table: user_details
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table: user_education
+  type: create_array_relationship
