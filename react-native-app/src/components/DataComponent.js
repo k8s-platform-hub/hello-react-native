@@ -1,81 +1,65 @@
 import React from 'react';
 import { StyleSheet, Text, View, Alert, Button, ActivityIndicator} from 'react-native';
 import {fetchUserDetails} from '../actions'
+import {graphql} from 'react-apollo';
+import {FETCH_USER_DETAILS} from './graphqlQueries';
+import InputComponent from './InputComponent';
 
-export default class DataComponent extends React.Component {
+export default graphql(FETCH_USER_DETAILS)((props) => {
 
-  state = {
-    userDetails: null,
-    loading: true,
-    isError: false
-  }
 
-  async componentDidMount() {
-    const dataResponse = await fetchUserDetails(this.props.token);
-    console.log(dataResponse);
-    if (dataResponse.success && dataResponse.data.length > 0) {
-      this.setState({
-        userDetails: dataResponse.data,
-        loading: false,
-        isError: false
-      });
-    } else {
-      this.setState({
-        ...this.state,
-        loading: false,
-        isError: true
-      })
-    }
-  }
-
-  render() {
-    if (this.state.isError) {
-      return (
-        <View style={styles.container}>
-          <Text>No data and/or table found.</Text>
-          <Button title="Back" onPress={this.props.goBack} />
-        </View>
-      );
-    }
-
-    if (this.state.loading) {
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
-
-    const userEducation = () => {
-      let educationString = '';
-      for (let i = 0; i < this.state.userDetails[0].education.length; i++){
-        educationString += this.state.userDetails[0].education[i].degree + ' from ' + this.state.userDetails[0].education[i].institution_name + ', '
-      }
-      return educationString.length === 0 ? '' : educationString.slice(0, educationString.length -1);
-    };
-
+  if (props.data.error) {
     return (
       <View style={styles.container}>
-        <Text>
-          Name: {this.state.userDetails[0].name}
-        </Text>
-        <Text>
-          Gender: {this.state.userDetails[0].gender}
-        </Text>
-        <Text>
-          Eduction: {userEducation()}
-        </Text>
-        <Button title="Back" onPress={this.props.goBack} />
+        <Text>No table found.</Text>
+        <Button title="Back" onPress={props.goBack} />
+      </View>
+    );
+  }
+
+  if (props.data.loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator/>
       </View>
     )
   }
-}
+
+  if (props.data.user_details.length === 0) {
+    return (
+      <InputComponent id={props.session.id} goBack={props.goBack}/>
+    );
+  }
+
+  const userEducation = () => {
+    let educationString = '';
+    for (let i = 0; i < props.data.user_details[0].education.length; i++){
+      educationString += props.data.user_details[0].education[i].degree + ' from ' + props.data.user_details[0].education[i].institution_name + ', '
+    }
+    return educationString.length === 0 ? '' : educationString.slice(0, educationString.length -1);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text>
+        Name: {props.data.user_details[0].name}
+      </Text>
+      <Text>
+        Gender: {props.data.user_details[0].gender}
+      </Text>
+      <Text>
+        Eduction: {userEducation()}
+      </Text>
+      <Button title="Back" onPress={props.goBack} />
+    </View>
+  )
+})
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   textbox: {

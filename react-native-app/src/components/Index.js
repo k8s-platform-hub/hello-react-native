@@ -64,7 +64,6 @@ export default class Index extends React.Component {
   }
 
   sendMessage = (msg) => {
-    console.log(msg);
     const {socket} = this.state;
     socket.emit('message', msg);
   }
@@ -98,7 +97,7 @@ export default class Index extends React.Component {
 
     if (openData) {
       return (
-        <DataComponent goBack={this.backToHomeScreen} token={session.token} />
+        <DataComponent goBack={this.backToHomeScreen} session={this.props.sessionInfo} />
       )
     }
 
