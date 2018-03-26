@@ -1,8 +1,0 @@
-- args:
-    sql: CREATE TABLE "user_education"("id" serial NOT NULL, "institution_name" text
-      NOT NULL, "degree" text NOT NULL, "user_id" integer NOT NULL, PRIMARY KEY ("id")
-      )
-  type: run_sql
-- args:
-    name: user_education
-  type: add_existing_table_or_view

@@ -1,4 +1,0 @@
-- args:
-    sql: ALTER TABLE "user_education" ADD FOREIGN KEY ("user_id") REFERENCES "user_details"
-      ("id")
-  type: run_sql

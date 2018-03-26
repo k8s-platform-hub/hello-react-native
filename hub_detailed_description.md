@@ -70,7 +70,7 @@ $ hasura api-console
 
 This will open up the console on your browser. You can access it at http://localhost:9695. We will be using the `API Console` extensively during this tutorial.
 
-# Database GraphQL
+# Database with GraphQL
 
 Most apps require a database to store and retrieve information from. Hasura provides instant GraphQL APIs over Postgres. This means, you can create a table and immediately get an endpoint to make GraphQL queries and mutations.
 
@@ -96,11 +96,11 @@ Go to the `API-Explorer` in the console and select `GraphQL` in the left panel. 
 
 > Please Make sure you add the `Admin token` in the request headers. By default, only `Admin` can perform operations on the tables. We will later learn how to enable these operations for `logged in users` and `anonymous users`.
 
-[!Data GraphQL Mutation](https://raw.githubusercontent.com/hasura/hello-react-native/master/assets/graphql_mutation.png)
+[!Data GraphQL Mutation](https://raw.githubusercontent.com/hasura/hello-react-native/graphql-revamp/assets/graphql_mutation.png)
 
 Now that we have inserted data into the table, lets try to fetch this information.
 
-[!Data GraphQL Query](https://raw.githubusercontent.com/hasura/hello-react-native/master/assets/query.png)
+[!Data GraphQL Query](https://raw.githubusercontent.com/hasura/hello-react-native/graphql-revamp/assets/graphql_query.png)
 
 
 To learn more about using GraphQL with Hasura, [check the docs](https://docs.hasura.io).
