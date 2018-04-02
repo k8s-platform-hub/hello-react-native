@@ -374,7 +374,9 @@ export default graphql (INSERT_USER_DETAILS)(props => {
 
 Check `react-native-app/src/InputComponent.js` for reference.
 
-## Selecting data from the table
+# More about data
+
+## Selecting data from the table using Apollo client
 
 Following is an example of fetching and rendering this user information
 
