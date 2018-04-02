@@ -107,12 +107,9 @@ export default class FileComponent extends React.Component {
       if (!pickerResult.cancelled) {
         uploadResponse = await uploadImageAsync(pickerResult.uri, this.props.token);
         uploadResult = await uploadResponse.json();
-        console.log(uploadResult);
         this.setState({ image: `https://filestore.${clusterName}.hasura-app.io/v1/file/${uploadResult.file_id}`});
       }
     } catch (e) {
-      console.log({ uploadResponse });
-      console.log({ uploadResult });
       console.log({ e });
       alert('Upload failed, sorry :(');
       this.setState({ ...this.state, uploading: false });

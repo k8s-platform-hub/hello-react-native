@@ -5,7 +5,6 @@ const authUrl = `https://auth.${clusterName}.hasura-app.io/v1/`;
 
 const trySignup = async (username, password) => {
   const signupUrl = authUrl + 'signup';
-  console.log(signupUrl);
   const options = {
     'method': 'POST',
     'headers': {
@@ -28,7 +27,6 @@ const trySignup = async (username, password) => {
     return respObj;
   } catch (e) {
     console.log(e);
-    console.error(e);
     return e;
   }
 }
@@ -104,7 +102,6 @@ const fetchUserDetails = async (token) => {
 
 const storeSession = async (sessionObj) => {
   try {
-    console.log(AsyncStorage);
     await AsyncStorage.setItem(`@${clusterName}:myapp`, JSON.stringify(sessionObj));
   } catch (e) {
     console.error(e);

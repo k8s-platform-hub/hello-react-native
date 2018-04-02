@@ -36,7 +36,6 @@ export default class SocketIO extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
         <View style={styles.container}>
