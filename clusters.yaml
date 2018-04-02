@@ -1,7 +1,0 @@
-- alias: hasura
-  config:
-    configmap: controller-conf
-    namespace: caricature23-hasura
-  data: null
-  kubeContext: caricature23
-  name: caricature23

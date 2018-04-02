@@ -103,7 +103,7 @@ Now that we have inserted data into the table, lets try to fetch this informatio
 ![Data GraphQL Query](https://raw.githubusercontent.com/hasura/hello-react-native/graphql-revamp/assets/graphql_query.png)
 
 
-To learn more about using GraphQL with Hasura, [check the docs](https://docs.hasura.io).
+To learn more about using GraphQL with Hasura, [check the docs](https://docs.hasura.io/0.15/manual/data/graphql.html).
 
 ## Setting up the Apollo Client
 
