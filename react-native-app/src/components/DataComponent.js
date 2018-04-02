@@ -8,7 +8,6 @@ import InputComponent from './InputComponent';
 export default graphql(FETCH_USER_DETAILS)((props) => {
 
   if (props.data.error) {
-    console.log(props.data);
     return (
       <View style={styles.container}>
         <Text>No table found.</Text>
@@ -18,15 +17,15 @@ export default graphql(FETCH_USER_DETAILS)((props) => {
   }
 
   if (props.data.loading) {
-  console.log(props.data);
     return (
       <View style={styles.container}>
         <ActivityIndicator/>
+        <Text style={{margin:20}}>Make sure you have created tables and added permissions</Text>
       </View>
     )
   }
 
-  if (props.data.user_details.length === 0) {
+  if (!props.data.user_details || (props.data.user_details && props.data.user_details.length === 0)) {
     return (
       <InputComponent id={props.session.id} goBack={props.goBack}/>
     );

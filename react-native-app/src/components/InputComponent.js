@@ -84,7 +84,7 @@ export default class InputComponent extends React.Component {
             userDetails={{
               name,
               gender,
-              id: this.props.id
+              user_id: this.props.id
             }}
             userEducation={{
               institution_name: institutionName,
@@ -134,7 +134,8 @@ const AddButton = compose (
       update: (proxy, {data: {insert_user_education}}) => {
         const data = proxy.readQuery({ query: FETCH_USER_DETAILS});
         const userEducation = props.userEducation;
-        data.user_details.education.push(userEducation);
+        userEducation.id = insert_user_education.returning[0].id;
+        data.user_details[0].education.push(userEducation);
         proxy.writeQuery({query: FETCH_USER_DETAILS, data})
       }
     });

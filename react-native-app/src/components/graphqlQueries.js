@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 const FETCH_USER_DETAILS= gql`
   query fetch_user_details{
     user_details {
-      id
+      user_id
       name
       gender
       education {
@@ -20,7 +20,7 @@ const INSERT_USER_DETAILS = gql`
     insert_user_details(objects: $objects) {
       affected_rows
       returning {
-        id
+        user_id
       }
     }
   }
