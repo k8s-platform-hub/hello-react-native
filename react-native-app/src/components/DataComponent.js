@@ -7,8 +7,8 @@ import InputComponent from './InputComponent';
 
 export default graphql(FETCH_USER_DETAILS)((props) => {
 
-
   if (props.data.error) {
+    console.log(props.data);
     return (
       <View style={styles.container}>
         <Text>No table found.</Text>
@@ -18,6 +18,7 @@ export default graphql(FETCH_USER_DETAILS)((props) => {
   }
 
   if (props.data.loading) {
+  console.log(props.data);
     return (
       <View style={styles.container}>
         <ActivityIndicator/>

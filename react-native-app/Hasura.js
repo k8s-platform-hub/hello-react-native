@@ -1,4 +1,4 @@
-const clusterName = "caricature23";
+const clusterName = "authorization76";
 
 export {
   clusterName
