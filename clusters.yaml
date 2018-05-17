@@ -1,7 +1,6 @@
+clusters:
 - alias: hasura
-  config:
-    configmap: controller-conf
-    namespace: authorization76-hasura
   data: null
-  kubeContext: authorization76
-  name: authorization76
+  infra:
+    provider: hasura-free
+version: v1
