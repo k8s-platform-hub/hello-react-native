@@ -1,0 +1,7 @@
+- args:
+    sql: CREATE TABLE "fcm_tokens"("user_id" integer NOT NULL, "token" text NOT NULL,
+      PRIMARY KEY ("user_id") )
+  type: run_sql
+- args:
+    name: fcm_tokens
+  type: add_existing_table_or_view
