@@ -119,26 +119,19 @@ export default class FileComponent extends React.Component {
   };
 }
 
-uploadImageAsync = async (uri, token) => {
+const uploadImageAsync = async (uri, token) => {
   let apiUrl = `https://filestore.${clusterName}.hasura-app.io/v1/file`;
 
-  let uriParts = uri.split('.');
-  let fileType = uriParts[uriParts.length - 1];
-
-  let formData = new FormData();
-  formData.append('photo', {
-    uri,
-    name: `photo.${fileType}`,
-    type: `image/${fileType}`,
-  });
+  const response = await fetch(uri);
+  const blob = await response.blob();
 
   let options = {
     method: 'POST',
-    body: formData,
     headers: {
       'Authorization': 'Bearer ' + token,
-      'Conent-Type': `image/${fileType}`,
+      'Conent-Type': `image/png`,
     },
+    body: blob
   };
 
   return fetch(apiUrl, options);
